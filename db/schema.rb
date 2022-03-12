@@ -10,10 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_09_182819) do
+ActiveRecord::Schema.define(version: 2022_03_12_090254) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "deliveries", force: :cascade do |t|
+    t.string "name"
+    t.integer "capacity"
+    t.boolean "finished"
+    t.date "startdate"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "loadingmaterials", force: :cascade do |t|
+    t.bigint "material_id"
+    t.bigint "loading_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["loading_id"], name: "index_loadingmaterials_on_loading_id"
+    t.index ["material_id"], name: "index_loadingmaterials_on_material_id"
+  end
+
+  create_table "loadings", force: :cascade do |t|
+    t.string "adress"
+    t.boolean "done"
+    t.date "date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "materials", force: :cascade do |t|
+    t.string "name"
+    t.integer "quantity"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,4 +60,6 @@ ActiveRecord::Schema.define(version: 2022_03_09_182819) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "loadingmaterials", "loadings"
+  add_foreign_key "loadingmaterials", "materials"
 end
