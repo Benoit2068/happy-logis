@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_12_090254) do
+ActiveRecord::Schema.define(version: 2022_03_12_123454) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 2022_03_12_090254) do
     t.date "startdate"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_deliveries_on_user_id"
   end
 
   create_table "loadingmaterials", force: :cascade do |t|
@@ -34,11 +36,13 @@ ActiveRecord::Schema.define(version: 2022_03_12_090254) do
   end
 
   create_table "loadings", force: :cascade do |t|
-    t.string "adress"
+    t.string "address"
     t.boolean "done"
     t.date "date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "delivery_id"
+    t.index ["delivery_id"], name: "index_loadings_on_delivery_id"
   end
 
   create_table "materials", force: :cascade do |t|
@@ -56,10 +60,14 @@ ActiveRecord::Schema.define(version: 2022_03_12_090254) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "function"
+    t.string "name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "deliveries", "users"
   add_foreign_key "loadingmaterials", "loadings"
   add_foreign_key "loadingmaterials", "materials"
+  add_foreign_key "loadings", "deliveries"
 end
