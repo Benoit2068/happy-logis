@@ -1,5 +1,5 @@
 class Loading < ApplicationRecord
-  has_many :loadingmaterials
+  has_many :loadingmaterials, dependent: :destroy
 
-  has many :materials, through: :loadingmaterials
+  has_many :materials, through: :loadingmaterials
 end
