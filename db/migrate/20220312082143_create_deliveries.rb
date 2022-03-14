@@ -5,6 +5,7 @@ class CreateDeliveries < ActiveRecord::Migration[6.1]
       t.integer :capacity
       t.boolean :finished
       t.date :startdate
+      t.references :user, foreign_key: true
 
       t.timestamps
     end
