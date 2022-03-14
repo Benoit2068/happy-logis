@@ -36,7 +36,10 @@ ActiveRecord::Schema.define(version: 2022_03_13_204757) do
   end
 
   create_table "loadings", force: :cascade do |t|
+
+=======
     t.string "name"
+
     t.string "address"
     t.boolean "done"
     t.date "date"
