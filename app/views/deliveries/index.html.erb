@@ -1,5 +1,14 @@
 <ul>
   <% @deliveries.each do |delivery| %>
     <li><%= delivery.name %></li>
+    <li><%= delivery.capacity %></li>
+    <li><%= delivery.startdate %></li>
+    <li><%= delivery.finished %></li>
+    <li><% Loading.where(delivery_id: delivery).each do |loading| %></li>
+      <li><%= loading.name %> / address : <%= loading.address %></li>
+      <% loading.materials.each do |material| %>
+        <p><%= material.name %> : quantity = <%= material.quantity%> pallets </p>
+      <% end %>
+    <% end %>
   <% end %>
 </ul>

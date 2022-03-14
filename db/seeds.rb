@@ -12,8 +12,8 @@ Delivery.destroy_all
 User.destroy_all
 Loadingmaterial.destroy_all
 
-john = User.create({ email: "john@gmail.com", name: 'Mick', function: "driver", password: "123456" })
-mick = User.create({ email: "mick@gmail.com", name: 'John', function: "driver", password: "123456" })
+john = User.create({ email: "john@gmail.com", name: 'John', function: "driver", password: "123456" })
+mick = User.create({ email: "mick@gmail.com", name: 'Mick', function: "driver", password: "123456" })
 nico = User.create({ email: "nico@gmail.com", name: 'Nico', function: "manager", password: "123456" })
 
 
@@ -26,11 +26,11 @@ delivery_zurich.save
 
 puts "delivery #{delivery_zurich.name} create!!!!"
 
-load_1 = Loading.create({date: Date.today, address: "Rte de Thonon 154, 1222 Vésenaz", done: false, delivery_id: delivery_zurich})
-load_2 = Loading.create({date: Date.today, address: "Hofstattstrasse 4A, 4552 Derendingen", done: false, delivery_id: delivery_zurich})
-load_3 = Loading.create({date: Date.today, address: "Zwickystrasse 2, 8304 Wallisellen", done: false, delivery_id: delivery_zurich})
-load_4 = Loading.create({date: Date.today, address: "Rupperswilerstrasse 2, 5503 Schafisheim", done: false, delivery_id: delivery_zurich})
-load_5 = Loading.create({date: Date.today, address: "Route de la Plaine, 1123 Aclens", done: false, delivery_id: delivery_zurich})
+load_1 = Loading.create({date: Date.today, name: "Moulin de la Pallanterie SA", address: "Rte de Thonon 154, 1222 Vésenaz", done: false, delivery_id: delivery_zurich.id})
+load_2 = Loading.create({date: Date.today, name: "Singh Handel", address: "Hofstattstrasse 4A, 4552 Derendingen", done: false, delivery_id: delivery_zurich.id})
+load_3 = Loading.create({date: Date.today, name: "Beerhub GmbH", address: "Zwickystrasse 2, 8304 Wallisellen", done: false, delivery_id: delivery_zurich.id})
+load_4 = Loading.create({date: Date.today, name: "Centrale Coop Schafisheim", address: "Rupperswilerstrasse 2, 5503 Schafisheim", done: false, delivery_id: delivery_zurich.id})
+load_5 = Loading.create({date: Date.today, name: "Centrale Coop Aclens", address: "Route de la Plaine, 1123 Aclens", done: false, delivery_id: delivery_zurich.id})
 
 puts "load #{load_1.address}, #{load_2.address}, #{load_3.address}, #{load_4.address}, #{load_5.address},  create"
 
