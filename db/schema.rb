@@ -20,10 +20,8 @@ ActiveRecord::Schema.define(version: 2022_03_13_204757) do
     t.integer "capacity"
     t.boolean "finished"
     t.date "startdate"
-    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_deliveries_on_user_id"
   end
 
   create_table "loadingmaterials", force: :cascade do |t|
@@ -36,17 +34,11 @@ ActiveRecord::Schema.define(version: 2022_03_13_204757) do
   end
 
   create_table "loadings", force: :cascade do |t|
-
-=======
-    t.string "name"
-
     t.string "address"
     t.boolean "done"
     t.date "date"
-    t.bigint "delivery_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["delivery_id"], name: "index_loadings_on_delivery_id"
   end
 
   create_table "materials", force: :cascade do |t|
@@ -71,8 +63,6 @@ ActiveRecord::Schema.define(version: 2022_03_13_204757) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "deliveries", "users"
   add_foreign_key "loadingmaterials", "loadings"
   add_foreign_key "loadingmaterials", "materials"
-  add_foreign_key "loadings", "deliveries"
 end
