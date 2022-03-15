@@ -6,33 +6,27 @@ class LoadingsController < ApplicationController
   end
 
   def show
-    authorize @loading
   end
 
   def new
-    authorize @loading
-    @loading = loading.new
+   @loading = loading.new
   end
 
   def create
-    authorize @loading
     @loading = loading.new(loading_params)
     @loading.save
     redirect_to loading_path(@loading)
   end
 
   def edit
-    authorize @loading
   end
 
   def update
-    authorize @loading
     @loading.update(loading_params)
     redirect_to loading_path(@loading)
   end
 
   def destroy
-    authorize @loading
     @loading.destroy
     redirect_to loadings_path
   end
