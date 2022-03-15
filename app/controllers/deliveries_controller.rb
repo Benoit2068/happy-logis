@@ -2,23 +2,18 @@ class DeliveriesController < ApplicationController
   before_action :set_delivery, only: [:show, :edit, :update, :destroy]
 
   def index
-    # @deliveries = Delivery.all
-    @deliveries = policy_scope(Delivery).order(created_at: :desc)
+    @deliveries = Delivery.all
   end
 
   def show
-    @delivery = policy_scope(Delivery)
-    # authorize @delivery
   end
 
   def new
-    authorize @delivery
-    @delivery = Delivery.new
+    @delivery = delivery.new
   end
 
   def create
-    authorize @delivery
-    @delivery = Delivery.new(delivery_params)
+    @delivery = delivery.new(delivery_params)
     @delivery.save
     redirect_to delivery_path(@delivery)
   end
@@ -27,13 +22,11 @@ class DeliveriesController < ApplicationController
   end
 
   def update
-    authorize @delivery
     @delivery.update(delivery_params)
     redirect_to delivery_path(@delivery)
   end
 
   def destroy
-    authorize @delivery
     @delivery.destroy
     redirect_to deliveries_path
   end
