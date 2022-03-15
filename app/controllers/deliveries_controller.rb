@@ -5,6 +5,10 @@ class DeliveriesController < ApplicationController
     @deliveries = Delivery.all
   end
 
+  def my_deliveries
+    @deliveries = Delivery.all
+  end
+
   def show
   end
 

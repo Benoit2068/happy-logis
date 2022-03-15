@@ -1,0 +1,27 @@
+<ul>
+  <% @deliveries.each do |delivery| %>
+    <li><%= delivery.name %></li>
+    <li><%= delivery.capacity %></li>
+    <li><%= delivery.startdate %></li>
+    <li><%= delivery.finished %></li>
+    <%= link_to "Show delivery détails", delivery_path(delivery), class: "btn btn-primary" %>
+    <li><% Loading.where(delivery_id: delivery).each do |loading| %></li>
+      <li><%= loading.name %> / address : <%= loading.address %></li>
+      <% loading.materials.each do |material| %>
+        <% if material.quantity > 0 %>
+          <% if material.quantity > 1 %>
+          <p>Loading <%= material.quantity %>  pallets of <%= material.name %></p>
+          <% else %>
+          <p>Loading <%= material.quantity %>  pallet of <%= material.name %></p>
+          <% end %>
+          <% else %>
+          <% if material.quantity < -1 %>
+          <p>Unloading <%= - material.quantity %>  pallets of <%= material.name%></p>
+          <% else %>
+          <p>Unloading <%= - material.quantity %>  pallet of <%= material.name%></p>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+</ul>
