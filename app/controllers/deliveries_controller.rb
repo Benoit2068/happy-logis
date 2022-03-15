@@ -4,14 +4,11 @@ class DeliveriesController < ApplicationController
   def index
     # @deliveries = Delivery.all
     @deliveries = policy_scope(Delivery).order(created_at: :desc)
-    # @deliveries.each do |delivery|
-    # @loading = Loading.where(delivery_id: delivery)
-    # raise
-    # end
   end
 
   def show
-    authorize @delivery
+    @delivery = policy_scope(Delivery)
+    # authorize @delivery
   end
 
   def new

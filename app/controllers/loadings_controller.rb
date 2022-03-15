@@ -2,7 +2,7 @@ class LoadingsController < ApplicationController
   before_action :set_loading, only: [:show, :edit, :update, :destroy]
 
   def index
-    @loadings = loading.all
+    @loadings = Loading.all
   end
 
   def show
@@ -11,12 +11,12 @@ class LoadingsController < ApplicationController
 
   def new
     authorize @loading
-    @loading = loading.new
+    @loading = Loading.new
   end
 
   def create
     authorize @loading
-    @loading = loading.new(loading_params)
+    @loading = Loading.new(loading_params)
     @loading.save
     redirect_to loading_path(@loading)
   end
@@ -44,6 +44,6 @@ class LoadingsController < ApplicationController
   end
 
   def set_loading
-    @loading = loading.find(params[:id])
+    @loading = Loading.find(params[:id])
   end
 end
