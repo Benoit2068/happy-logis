@@ -2,7 +2,11 @@ class DeliveriesController < ApplicationController
   before_action :set_delivery, only: [:show, :edit, :update, :destroy]
 
   def index
-    @deliveries = delivery.all
+    @deliveries = Delivery.all
+  end
+
+  def my_deliveries
+    @deliveries = Delivery.all
   end
 
   def show
