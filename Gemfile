@@ -34,7 +34,6 @@ gem 'font-awesome-sass'
 gem 'simple_form'
 
 gem 'devise'
-=======
 gem 'pundit'
 
 group :development, :test do  gem 'pry-byebug'
