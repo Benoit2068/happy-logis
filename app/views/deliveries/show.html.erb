@@ -1,5 +1,4 @@
 <h1><%= @delivery.name %></h1>
-
     <li><% Loading.where(delivery_id: @delivery).each do |loading| %></li>
       <li><%= loading.name %> / address : <%= loading.address %></li>
       <% loading.materials.each do |material| %>

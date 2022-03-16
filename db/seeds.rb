@@ -19,12 +19,27 @@ nico = User.create({ email: "nico@gmail.com", name: 'Nico', function: "manager",
 
 puts "user #{john.name}, #{mick.name}, #{nico.name} create!!!!"
 
-delivery_zurich = Delivery.new({ name: "Zurich", startdate: Date.today, capacity: 33, finished: false})
+delivery_zurich = Delivery.new({ name: "Zurich", startdate: Date.today - 1, capacity: 33, finished: false})
 delivery_zurich.user = john
 delivery_zurich.save
 
+delivery_geneve = Delivery.new({ name: "Genève", startdate: Date.today + 1, capacity: 33, finished: false})
+delivery_geneve.user = john
+delivery_geneve.save
 
-puts "delivery #{delivery_zurich.name} create!!!!"
+delivery_sierre = Delivery.new({ name: "Sierre", startdate: Date.today, capacity: 33, finished: false})
+delivery_sierre.user = john
+delivery_sierre.save
+
+delivery_sierre2 = Delivery.new({ name: "Sierre 2", startdate: Date.today, capacity: 33, finished: false})
+delivery_sierre2.user = mick
+delivery_sierre2.save
+
+
+puts "delivery #{delivery_zurich.name} create"
+puts "delivery #{delivery_geneve.name} create"
+puts "delivery #{delivery_sierre.name} create"
+puts "delivery #{delivery_sierre2.name} create"
 
 load_1 = Loading.create({date: Date.today, name: "Moulin de la Pallanterie SA", address: "Rte de Thonon 154, 1222 Vésenaz", done: false, delivery_id: delivery_zurich.id})
 load_2 = Loading.create({date: Date.today, name: "Singh Handel", address: "Hofstattstrasse 4A, 4552 Derendingen", done: false, delivery_id: delivery_zurich.id})

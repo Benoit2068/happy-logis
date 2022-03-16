@@ -1,12 +1,13 @@
 class DeliveriesController < ApplicationController
   before_action :set_delivery, only: [:show, :edit, :update, :destroy]
 
+
   def index
     @deliveries = Delivery.all
   end
 
   def my_deliveries
-    @deliveries = Delivery.all
+    @deliveries = Delivery.where(user_id: current_user, finished: false).order(:startdate)
   end
 
   def show
