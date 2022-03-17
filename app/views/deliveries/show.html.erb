@@ -1,12 +1,19 @@
-<h2><%= @delivery.name %></h2>
-<p><%= @delivery.capacity %></p>
-<p><%= @delivery.finished %></p>
-
-<%= link_to 'Edit', edit_delivery_path(@delivery) %> |
-
-<%= link_to "Delete #{@delivery.name}",
-            delivery_path(@delivery),
-            method: :delete,
-            data: { confirm: "Are you sure?" } %>
-
-<%= link_to 'Add Loading', new_delivery_loading_path(@delivery) %>
+<h1><%= @delivery.name %></h1>
+    <li><% Loading.where(delivery_id: @delivery).each do |loading| %></li>
+      <li><%= loading.name %> / address : <%= loading.address %></li>
+      <% loading.materials.each do |material| %>
+        <% if material.quantity > 0 %>
+          <% if material.quantity > 1 %>
+          <p>Loading <%= material.quantity %>  pallets of <%= material.name %></p>
+          <% else %>
+          <p>Loading <%= material.quantity %>  pallet of <%= material.name %></p>
+          <% end %>
+          <% else %>
+          <% if material.quantity < -1 %>
+          <p>Unloading <%= - material.quantity %>  pallets of <%= material.name%></p>
+          <% else %>
+          <p>Unloading <%= - material.quantity %>  pallet of <%= material.name%></p>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
