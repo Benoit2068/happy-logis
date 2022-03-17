@@ -1,3 +1,12 @@
 <h2><%= @delivery.name %></h2>
 <p><%= @delivery.capacity %></p>
 <p><%= @delivery.finished %></p>
+
+<%= link_to 'Edit', edit_delivery_path(@delivery) %> |
+
+<%= link_to "Delete #{@delivery.name}",
+            delivery_path(@delivery),
+            method: :delete,
+            data: { confirm: "Are you sure?" } %>
+
+<%= link_to 'Add Loading', new_delivery_loading_path(@delivery) %>

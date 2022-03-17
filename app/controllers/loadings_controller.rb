@@ -34,7 +34,7 @@ class LoadingsController < ApplicationController
   private
 
   def loading_params
-    params.require(:loading).permit(:name, :address, :date)
+    params.require(:loading).permit(:name, :address, :date, :delivery_id)
   end
 
   def set_loading

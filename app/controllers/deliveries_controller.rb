@@ -6,6 +6,7 @@ class DeliveriesController < ApplicationController
   end
 
   def show
+    @loading = loading.new
   end
 
   def new
