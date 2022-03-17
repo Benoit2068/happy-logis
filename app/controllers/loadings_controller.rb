@@ -9,11 +9,11 @@ class LoadingsController < ApplicationController
   end
 
   def new
-   @loading = loading.new
+    @loading = Loading.new
   end
 
   def create
-    @loading = loading.new(loading_params)
+    @loading = Loading.new(loading_params)
     @loading.save
     redirect_to loading_path(@loading)
   end
