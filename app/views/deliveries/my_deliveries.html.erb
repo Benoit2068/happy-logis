@@ -1,27 +1,23 @@
-<ul>
-  <% @deliveries.each do |delivery| %>
-    <li><%= delivery.name %></li>
-    <li><%= delivery.capacity %></li>
-    <li><%= delivery.startdate %></li>
-    <li><%= delivery.finished %></li>
-    <%= link_to "Show delivery détails", delivery_path(delivery), class: "btn btn-primary" %>
-    <li><% Loading.where(delivery_id: delivery).each do |loading| %></li>
-      <li><%= loading.name %> / address : <%= loading.address %></li>
-      <% loading.materials.each do |material| %>
-        <% if material.quantity > 0 %>
-          <% if material.quantity > 1 %>
-          <p>Loading <%= material.quantity %>  pallets of <%= material.name %></p>
-          <% else %>
-          <p>Loading <%= material.quantity %>  pallet of <%= material.name %></p>
-          <% end %>
-          <% else %>
-          <% if material.quantity < -1 %>
-          <p>Unloading <%= - material.quantity %>  pallets of <%= material.name%></p>
-          <% else %>
-          <p>Unloading <%= - material.quantity %>  pallet of <%= material.name%></p>
-          <% end %>
+
+<div class="head_deliveries">
+    <h1>Hello <%= current_user.name %>!</h1>
+    <h2>your next delivery :</h2>
+    <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+</div>
+<div class="container py-5">
+  <div class="d-flex align-items-center justify-content-between mb-3">
+    <div class="row">
+      <div class="cards">
+        <% @deliveries.each do |delivery| %>
+            <div class="card-delivery">
+              <div class="card-delivery-infos">
+                <h2><%= delivery.name %></h2>
+                <p><%= delivery.startdate %></p>
+              </div>
+                <%= link_to "Start delivery", delivery_path(delivery), class: "btn btn-primary" %>
+            </div>
         <% end %>
-      <% end %>
-    <% end %>
-  <% end %>
-</ul>
+      </div>
+    </div>
+  </div>
+</div>
