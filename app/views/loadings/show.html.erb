@@ -1,2 +1,19 @@
 <h2><%= @loading.name %></h2>
 <p><%= @loading.address %></p>
+    <% @loading.materials.each do |material| %>
+      <p><%= material.name %></p>
+      <p><%= material.quantity %></p>
+    <% end %>
+
+<%= simple_form_for([ @loading, @material ]) do |f| %>
+  <%= f.input :name, as: :text %>
+  <%= f.input :quantity, as: :integer %>
+  <%= f.button :submit %>
+<% end %>
+
+<%= link_to 'Edit Loading', edit_loading_path(@loading) %> |
+
+<%= link_to "Delete Loading",
+            delivery_path(@loading),
+            method: :delete,
+            data: { confirm: "Are you sure?" } %>
