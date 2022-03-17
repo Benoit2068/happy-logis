@@ -9,21 +9,11 @@ class LoadingsController < ApplicationController
   end
 
   def new
-<<<<<<< HEAD
-    authorize @loading
     @loading = Loading.new
   end
 
   def create
-    authorize @loading
     @loading = Loading.new(loading_params)
-=======
-   @loading = loading.new
-  end
-
-  def create
-    @loading = loading.new(loading_params)
->>>>>>> master
     @loading.save
     redirect_to loading_path(@loading)
   end
