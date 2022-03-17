@@ -38,21 +38,35 @@
 
 					<div class="form-group">
 						<button type="submit" class="btn btn-success btn-block">
+<<<<<<< HEAD
 							<a href="new_user_session_path" class="light-green-color">Sign In</a>
+=======
+							<a href="#" class="light-green-color">Sign In</a>
+
+>>>>>>> 5e3e7714595c600417e1b1871280c92ffc1dbcb6
 						</button>
 					</div>
 
+
+
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-lock"></i></span>
+							<input type="password" name="password" class="form-control" placeholder="*********" required="required">
+						</div>
+					</div>
+
 					<div class="clearfix">
-			            <label class="pull-left checkbox-inline white-color"><input type="checkbox"> Remember me</label>
-			            <a href="#" class="pull-right text-success light-green-color">Forgot Password?</a>
-			        </div>
+              <label class="pull-left checkbox-inline white-color"><input type="checkbox"> Remember me</label>
+              <a href="#" class="pull-right text-success light-green-color">Forgot Password?</a>
+          </div>
 
 				</form>
 				<div class="hint-text">Don't have an account? <a href="new_user_registration_path" class="text-success light-green-color">Register Now!</a></div>
 			</div>
-
 		</div>
-
+<%= link_to "Login", new_user_session_path, class: "nav-link" %>
+<%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
 
 
 		<!-- jQuery and Bootstrap JS -->

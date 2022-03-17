@@ -1,0 +1,23 @@
+
+<div class="head_deliveries">
+    <h1>Hello <%= current_user.name %>!</h1>
+    <h2>your next delivery :</h2>
+    <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+</div>
+<div class="container py-5">
+  <div class="d-flex align-items-center justify-content-between mb-3">
+    <div class="row">
+      <div class="cards">
+        <% @deliveries.each do |delivery| %>
+            <div class="card-delivery">
+              <div class="card-delivery-infos">
+                <h2><%= delivery.name %></h2>
+                <p><%= delivery.startdate %></p>
+              </div>
+                <%= link_to "Start delivery", delivery_path(delivery), class: "btn btn-primary" %>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
