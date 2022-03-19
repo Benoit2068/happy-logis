@@ -1,22 +1,26 @@
+
+ <div class="head_deliveries">
+ <h1><%= @delivery.name %></h1>
+</div>
 <div class="container">
-  <h1><%= @delivery.name %></h1>
-    <div class="cards">
-        <% Loading.where(delivery_id: @delivery).each do |loading| %>
-        <div class="card-loading-2">
-        <h2><%= loading.name %></h2>
-        <p> <%= loading.address %></p>
-
-
-        </div>
+  <div class="cards mb-3">
+      <% Loading.where(delivery_id: @delivery).each do |loading| %>
+        <%= link_to delivery_loading_path(@delivery, loading) do %>
+          <div class="card-delivery">
+            <div class="card-delivery-infos">
+              <h2><%= loading.name %></h2>
+              <p> <%= loading.address %></p>
+            </div>
+          </div>
         <% end %>
+      <% end %>
+  </div>
 
-
-    </div>
+<div id="map"
+    style="width:100%"
+    data-markers="<%= @markers.to_json %>"
+    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
 </div>
 
 <%= link_to "Add a Loading", new_delivery_loading_path(@delivery), class: "btn btn-primary bottom" %>
-
-
-<div id="map"
-     data-markers="<%= @markers.to_json %>"
-     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+</div>
