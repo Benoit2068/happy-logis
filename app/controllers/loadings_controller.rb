@@ -7,9 +7,9 @@ class LoadingsController < ApplicationController
 
   def show
     @markers = [{
-        lat: @loading.latitude,
-        lng: @loading.longitude
-      }]
+      lat: @loading.latitude,
+      lng: @loading.longitude
+    }]
     #@material = Material.new
   end
 
@@ -20,6 +20,8 @@ class LoadingsController < ApplicationController
 
   def create
     @loading = Loading.new(loading_params)
+    @delivery = Delivery.find(params[:delivery_id])
+    @loading.delivery_id = @delivery.id
     @loading.save
     redirect_to delivery_loadings_path
   end
@@ -40,7 +42,7 @@ class LoadingsController < ApplicationController
   private
 
   def loading_params
-    params.require(:loading).permit(:name, :address, :date, :delivery_id)
+    params.require(:loading).permit(:name, :address, :date)
   end
 
   def set_loading

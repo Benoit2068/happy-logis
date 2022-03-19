@@ -1,5 +1,5 @@
 <ul>
   <% @loadings.each do |loading| %>
-    <li><%= loading.name %></li>
+    <li><%= loading.name %> <%= loading.address %> <%= loading.delivery_id %> <%= loading.id %></li>
   <% end %>
 </ul>
