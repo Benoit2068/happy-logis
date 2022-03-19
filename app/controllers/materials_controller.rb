@@ -2,20 +2,25 @@ class MaterialsController < ApplicationController
   before_action :set_material, only: [:show, :edit, :update, :destroy]
 
   def index
-    @materials = material.all
+    @materials = Material.all
   end
 
   def show
   end
 
   def new
-    @material = material.new
+    @material = Material.new
   end
 
   def create
-    @material = material.new(material_params)
+    @material = Material.new(material_params)
+    @material.loading = @loading
     @material.save
-    redirect_to material_path(@material)
+    if @material.save
+      redirect_to loading_path(@loading)
+    else
+      render 'loadings/show'
+    end
   end
 
   def edit
