@@ -87,3 +87,25 @@
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
+
+
+.card-loading {
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  background-color: #5CE1E6;
+  overflow: hidden;
+  text-align: center;
+  width: 50%;
+  margin: 5% auto;
+  padding: 10px;
+}
+
+.card-loading h2 {
+margin-bottom: 30px;
+color:white;
+}
+
+#map {
+width: 50%;
+height: 600px;
+margin: 0 auto;
+}

@@ -6,9 +6,8 @@ class LoadingsController < ApplicationController
   end
 
   def show
-
+  #@markers = @loading.geocoded
     #@material = Material.new
-
   end
 
   def new
