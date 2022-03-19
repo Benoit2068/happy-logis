@@ -9,13 +9,14 @@ class MaterialsController < ApplicationController
   end
 
   def new
+    @loading = Loading.find(params[:loading_id])
     @material = Material.new
   end
 
   def create
+    @loading = Loading.find(params[:loading_id])
     @material = Material.new(material_params)
     @material.loading = @loading
-    @material.save
     if @material.save
       redirect_to loading_path(@loading)
     else

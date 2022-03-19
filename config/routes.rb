@@ -8,5 +8,9 @@ end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get '/my_deliveries', to: 'deliveries#my_deliveries'
-  resources :deliveries
+  resources :deliveries do
+    resources :loadings do
+      resources :materials, only: [ :new, :create, :destroy]
+    end
+  end
 end

@@ -1,6 +1,6 @@
 <h1><%= @delivery.name %></h1>
     <li><% Loading.where(delivery_id: @delivery).each do |loading| %></li>
-      <li><%= loading.name %> / address : <%= loading.address %></li>
+      <li><%= loading.name %> <%= loading.id %>/ address : <%= loading.address %></li>
       <% loading.materials.each do |material| %>
         <% if material.quantity > 0 %>
           <% if material.quantity > 1 %>
@@ -17,3 +17,5 @@
         <% end %>
       <% end %>
     <% end %>
+
+<%= link_to "Add a Loading", new_delivery_loading_path(@delivery) %>
