@@ -6,7 +6,10 @@ class LoadingsController < ApplicationController
   end
 
   def show
-  #@markers = @loading.geocoded
+    @markers = [{
+        lat: @loading.latitude,
+        lng: @loading.longitude
+      }]
     #@material = Material.new
   end
 

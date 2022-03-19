@@ -1,9 +1,9 @@
-<%= simple_form_for [@delivery, @loading] do |f| %>
-  <%= f.label :name %>
-  <%= f.input :name , as: :string %>
-  <%= f.label :address %>
-  <%= f.input :address , as: :string %>
-  <%= f.label :date %>
-  <%= f.input :date , label: '(YYYY/MM/DD)'%>
-  <%= f.submit "Create Loading", class: "btn btn-primary" %>
-<% end %>
+      <div class="card-loading rounded p-3 shadow">
+        <h2>Add a New Loading</h2>
+        <%= simple_form_for [@delivery, @loading] do |f| %>
+          <%= f.input :name , as: :string %>
+          <%= f.input :address , as: :string %>
+          <%= f.input :date , label: 'Date'%>
+          <%= f.submit "Create Loading", class: "btn btn-gradient" %>
+        <% end %>
+      </div>
