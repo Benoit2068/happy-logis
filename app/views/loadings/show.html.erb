@@ -1,12 +1,27 @@
-<h2><%= @loading.name %></h2>
-<p><%= @loading.address %></p>
+<div class="card-loading">
+  <h2><strong><%= @loading.name %></strong></h2>
+<p> <strong><u>Location:</u></strong> <%= @loading.address %></p>
+<p> <i>What do you have to Load/Unload ?</i></p>
     <% @loading.materials.each do |material| %>
-      <p><%= material.name %></p>
-      <p><%= material.quantity %></p>
+      <p><%if material.quantity > 0 %>
+      <li>Load <strong><%= material.quantity %></strong> pallets of <strong><%= material.name %></strong></li></p>
+      <%else %>
+      <li>Unload <strong><%= material.quantity %></strong> pallets of <strong><%= material.name %></strong></li></p>
+      <%end %>
     <% end %>
 
+<div>
+<input type="checkbox" id="complete" name="complete"> <label for="complete">Complete</label>
+</div>
 
-<%= link_to "Delete Loading",
+
+<%=link_to "Delete Loading",
             delivery_path(@loading),
             method: :delete,
-            data: { confirm: "Are you sure?" } %>
+            data: { confirm: "Are you sure?" },
+            class: "btn btn-gradient" %>
+</div>
+
+<div id="map"
+     data-markers="<%= @markers.to_json %>"
+     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
