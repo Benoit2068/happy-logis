@@ -1,10 +1,7 @@
 <%= simple_form_for (@delivery) do |f| %>
-  <%= f.label :capacity %>
-  <%= f.input :capacity , as: :integer, :placeholder => 'Enter the max number of pallet'%>
-  <%= f.label :startdate %>
-  <%= f.input :startdate , , label: '(YYYY/MM/DD)'%>
-  <%= f.input :user_id , as: :select%>
-  <%= f.label :name %>
   <%= f.input :name , as: :string %>
+  <%= f.input :startdate , label: 'Enter Start Date (YYYY/MM/DD)'%>
+  <%= f.input :capacity , as: :integer, :placeholder => 'Enter the max number of pallet'%>
+  <%= f.input :user_id , as: :select, :collection =>  User.all, prompt: "Select Driver", label: "Driver" %>
   <%= f.submit "Create Delivery", class: "btn btn-primary" %>
 <% end %>

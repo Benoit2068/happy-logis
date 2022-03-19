@@ -5,13 +5,6 @@
       <p><%= material.quantity %></p>
     <% end %>
 
-<%= simple_form_for([ @loading, @material ]) do |f| %>
-  <%= f.input :name, as: :text %>
-  <%= f.input :quantity, as: :integer %>
-  <%= f.button :submit %>
-<% end %>
-
-<%= link_to 'Edit Loading', edit_loading_path(@loading) %> |
 
 <%= link_to "Delete Loading",
             delivery_path(@loading),

@@ -11,15 +11,24 @@ class DeliveriesController < ApplicationController
   end
 
   def show
-    @loading = loading.new
+
+    @loading = Loading.new
+
+    @markers = @delivery.loadings.geocoded.map do |loading|
+      {
+        lat: loading.latitude,
+        lng: loading.longitude
+      }
+    end
+
   end
 
   def new
-    @delivery = delivery.new
+    @delivery = Delivery.new
   end
 
   def create
-    @delivery = delivery.new(delivery_params)
+    @delivery = Delivery.new(delivery_params)
     @delivery.save
     redirect_to delivery_path(@delivery)
   end
