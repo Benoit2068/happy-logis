@@ -7,16 +7,19 @@ class LoadingsController < ApplicationController
 
   def show
 
+    #@material = Material.new
+
   end
 
   def new
+    @delivery = Delivery.find(params[:delivery_id])
     @loading = Loading.new
   end
 
   def create
     @loading = Loading.new(loading_params)
     @loading.save
-    redirect_to loading_path(@loading)
+    redirect_to delivery_loadings_path
   end
 
   def edit
