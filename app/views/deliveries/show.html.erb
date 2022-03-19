@@ -2,8 +2,10 @@
   <h1><%= @delivery.name %></h1>
     <div class="cards">
         <% Loading.where(delivery_id: @delivery).each do |loading| %>
-        <div class="card-loading">
+        <div class="card-loading-2">
         <h2><%= loading.name %></h2>
+        <p> <%= loading.address %></p>
+
 
         </div>
         <% end %>
