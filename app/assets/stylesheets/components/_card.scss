@@ -48,6 +48,12 @@
   flex-direction: column;
 }
 
+.cards a{
+  color: black;
+  p {
+    color: #525252;
+  }
+}
 // Smallest device
 @media (min-width: 100px) and (max-width: 575px) {
   .cards {
@@ -98,6 +104,18 @@
 margin-bottom: 30px;
 color:white;
 }
+
+.card-loading-2 {
+  overflow: hidden;
+  height: 120px;
+  width: 500px;
+  background: rgb(255, 255, 255);
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+}
+
 
 #map {
 width: 50%;
