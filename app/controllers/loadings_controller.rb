@@ -36,7 +36,7 @@ class LoadingsController < ApplicationController
 
   def destroy
     @loading.destroy
-    redirect_to loadings_path
+    redirect_to delivery_path(@loading.delivery_id)
   end
 
   private
