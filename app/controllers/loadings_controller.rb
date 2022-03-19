@@ -2,10 +2,11 @@ class LoadingsController < ApplicationController
   before_action :set_loading, only: [:show, :edit, :update, :destroy]
 
   def index
-    @loadings = Loading.all
+     @loadings = Loading.all
   end
 
   def show
+
   end
 
   def new
