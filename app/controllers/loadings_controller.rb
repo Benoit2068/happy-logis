@@ -6,7 +6,7 @@ class LoadingsController < ApplicationController
   end
 
   def show
-    @material = Material.new
+    #@material = Material.new
   end
 
   def new

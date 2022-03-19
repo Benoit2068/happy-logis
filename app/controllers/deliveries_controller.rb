@@ -12,6 +12,12 @@ class DeliveriesController < ApplicationController
 
   def show
     @loading = Loading.new
+    @markers = @delivery.loadings.geocoded.map do |loading|
+      {
+        lat: loading.latitude,
+        lng: loading.longitude
+      }
+    end
   end
 
   def new
