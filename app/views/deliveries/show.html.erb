@@ -10,6 +10,10 @@
             <div class="card-delivery-infos">
               <h2><%= loading.name %></h2>
               <p> <%= loading.address %></p>
+              <p> <%= loading.date %></p>
+                <% if loading.done? %>
+                  <p><strong> Finished </strong></p>
+                <% end %>
             </div>
           </div>
         <% end %>
