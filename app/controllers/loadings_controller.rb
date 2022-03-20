@@ -23,7 +23,7 @@ class LoadingsController < ApplicationController
     @delivery = Delivery.find(params[:delivery_id])
     @loading.delivery_id = @delivery.id
     @loading.save
-    redirect_to delivery_loadings_path
+    redirect_to delivery_path(@loading.delivery_id)
   end
 
   def edit
