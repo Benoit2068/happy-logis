@@ -10,8 +10,7 @@ Rails.application.routes.draw do
   get '/my_deliveries', to: 'deliveries#my_deliveries'
   resources :deliveries do
     resources :loadings
-    # do
-    #   resources :materials, only: [ :new, :create, :destroy]
-    # end
   end
+      resources :materials, only: [ :new, :create, :destroy]
+
 end

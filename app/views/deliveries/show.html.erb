@@ -2,7 +2,7 @@
  <div class="head_deliveries">
  <h1><%= @delivery.name %></h1>
 </div>
-<div class="container">
+<div class="container py-4">
   <div class="cards mb-3">
       <% Loading.where(delivery_id: @delivery).each do |loading| %>
         <%= link_to delivery_loading_path(@delivery, loading) do %>
