@@ -11,10 +11,12 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
+    <%= stylesheet_pack_tag 'application' %>
+
   </head>
 
   <body>
-      <% if current_user  %>
+    <% if current_user %>
       <%= render 'shared/navbar' %>
     <% end %>
     <%= render 'shared/flashes' %>

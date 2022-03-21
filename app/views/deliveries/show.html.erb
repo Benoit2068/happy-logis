@@ -1,7 +1,13 @@
 
- <div class="head_deliveries">
- <h1><%= @delivery.name %></h1>
+<div class="head_deliveries">
+  <h1><%= @delivery.name %></h1>
 </div>
+
+</div>
+  <%=link_to "All deliveries", my_deliveries_path(@delivery), class: "btn btn-gradient" %>
+  <%= link_to "Add a Loading", new_delivery_loading_path(@delivery), class: "btn btn-gradient" %>
+</div>
+
 <div class="container py-4">
   <div class="cards mb-3">
       <% Loading.where(delivery_id: @delivery).each do |loading| %>
@@ -19,12 +25,11 @@
         <% end %>
       <% end %>
   </div>
-
-<div id="map"
-    style="width:100%"
-    data-markers="<%= @markers.to_json %>"
-    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-</div>
-
-<%= link_to "Add a Loading", new_delivery_loading_path(@delivery), class: "btn btn-primary bottom" %>
+  <% if Loading.where(delivery_id: @delivery).presence %>
+    <div id="map"
+        style="width:100%"
+        data-markers="<%= @markers.to_json %>"
+        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
+  <% end %>
 </div>
