@@ -12,18 +12,26 @@
   <div class="cards mb-3">
       <% Loading.where(delivery_id: @delivery).each do |loading| %>
         <%= link_to delivery_loading_path(@delivery, loading) do %>
-          <div class="card-delivery">
-            <div class="card-delivery-infos">
-              <h2><%= loading.name %></h2>
-              <p> <%= loading.address %></p>
-              <p> <%= loading.date %></p>
-                <% if loading.done? %>
-                  <p><strong> Finished </strong></p>
-                <% end %>
+          <% if loading.done? %>
+            <div class="card-delivery" style="border-color:#a5e0a5;border-style:solid">
+              <div class="card-delivery-infos">
+                <h2><%= loading.name %></h2>
+                <p> <%= loading.address.split(', ').last %></p>
+                <p> <%= loading.date %></p>
+              </div>
             </div>
-          </div>
+          <% else  %>
+            <div class="card-delivery" style="border-color:#dd8787;border-style:solid">
+              <div class="card-delivery-infos">
+                <h2><%= loading.name %></h2>
+                <p> <%= loading.address.split(', ').last %></p>
+                <p> <%= loading.date %></p>
+              </div>
+            </div>
+          <% end %>
         <% end %>
       <% end %>
+    </div>
   </div>
   <% if Loading.where(delivery_id: @delivery).presence %>
     <div id="map"
