@@ -1,11 +1,15 @@
 
 <div class="head_deliveries">
   <h1><%= @delivery.name %></h1>
-</div>
-
-</div>
-  <%=link_to "All deliveries", my_deliveries_path(@delivery), class: "btn btn-gradient" %>
-  <%= link_to "Add a Loading", new_delivery_loading_path(@delivery), class: "btn btn-gradient" %>
+  <div class="nav-item dropdown">
+    <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+      <%= link_to "My deliveries", my_deliveries_path, class: "dropdown-item" %>
+      <%# if current_user.function == "manager" %>
+      <%= link_to "Add a Loading", new_delivery_loading_path(@delivery), class: "dropdown-item" %>
+      <%# end %>
+    </div>
+  </div>
 </div>
 
 <div class="container py-4">

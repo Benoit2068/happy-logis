@@ -3,38 +3,12 @@
     <a class="navbar-brand" href="#">
       <%= image_tag "logo-small.png" %>
     </a>
-
-
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon">
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item dropdown">
-
-
-          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-            <li>
-              <%# if current_page?(delivery_path) %>
-              <%= link_to "All deliveries", my_deliveries_path, class: "dropdown-item" %>
-              <%# end %>
-            </li>
-            <li>
-              <%# <% if current_page?(delivery_path) %>
-              <%= link_to "Add a Delivery", new_delivery_path, class: "dropdown-item" %>
-              <%# <% end %>
-              <% if user_signed_in? %>
-              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-              <% end %>
-            </li>
-          </div>
-        </li>
-      </ul>
-    </div>
+    <% if user_signed_in? %>
+      <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+    <% end %>
 
 
 
-      </span>
+
   </div>
 </div>
