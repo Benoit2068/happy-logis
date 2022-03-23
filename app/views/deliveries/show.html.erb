@@ -8,31 +8,56 @@
   <%= link_to "Add a Loading", new_delivery_loading_path(@delivery), class: "btn btn-gradient" %>
 </div>
 
-<div class="container py-4">
-  <div class="cards mb-3">
-      <% Loading.where(delivery_id: @delivery).each do |loading| %>
-        <%= link_to delivery_loading_path(@delivery, loading) do %>
-          <% if loading.done? %>
-            <div class="card-delivery" style="border-color:#a5e0a5;border-style:solid">
-              <div class="card-delivery-infos">
-                <h2><%= loading.name %></h2>
-                <p> <%= loading.address.split(', ').last %></p>
-                <p> <%= loading.date %></p>
+
+
+  <div class="container py-4">
+    <div class="cards mb-3">
+        <% Loading.where(delivery_id: @delivery).each do |loading| %>
+          <%= link_to delivery_loading_path(@delivery, loading) do %>
+            <% if loading.done? %>
+              <div class="card-delivery" style="border-color:#a5e0a5;border-style:solid">
+                <div class="card-delivery-infos">
+                  <h2><%= loading.name %></h2>
+                  <p> <%= loading.address.split(', ').last %></p>
+                  <p> <%= loading.date %></p>
+                </div>
               </div>
-            </div>
-          <% else  %>
-            <div class="card-delivery" style="border-color:#dd8787;border-style:solid">
-              <div class="card-delivery-infos">
-                <h2><%= loading.name %></h2>
-                <p> <%= loading.address.split(', ').last %></p>
-                <p> <%= loading.date %></p>
+            <% else  %>
+              <div class="card-delivery" style="border-color:#dd8787;border-style:solid">
+                <div class="card-delivery-infos">
+                  <h2><%= loading.name %></h2>
+                  <p> <%= loading.address.split(', ').last %></p>
+                  <p> <%= loading.date %></p>
+                </div>
               </div>
-            </div>
+            <% end %>
           <% end %>
         <% end %>
-      <% end %>
+      </div>
     </div>
-  </div>
+  <ul id="progress">
+  <% Loading.where(delivery_id: @delivery).each_with_index do |loading, index| %>
+      <% if index == 0 %>
+        <% if loading.done? %>
+          <li><div class="node green"></div>
+          <h3><%= loading.name %></h3>
+          </li>
+        <% else %>
+          <li><div class="node grey"></div><p><%= loading.name %></p></li>
+        <% end %>
+      <% else %>
+        <% if loading.done? %>
+          <li><div class="divider green"></div></li>
+          <li><div class="node green"></div><p><%= loading.name %></p></li>
+        <% else %>
+          <li><div class="divider grey"></div></li>
+          <li><div class="node grey"></div><p><%= loading.name %></p></li>
+        <% end %>
+      <% end %>
+  <% end %>
+  </ul>
+
+
   <% if Loading.where(delivery_id: @delivery).presence %>
     <div id="map"
         style="width:100%"
