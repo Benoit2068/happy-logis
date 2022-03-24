@@ -9,10 +9,20 @@ const initMapbox = () => {
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
     const map = new mapboxgl.Map({
       container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v10'
+      style: 'mapbox://styles/mapbox/streets-v10',
+      center: [11.255, 43.77], // starting position
+      zoom: 13 // starting zoom
     });
 
+    map.addControl(new mapboxgl.FullscreenControl());
+
     const markers = JSON.parse(mapElement.dataset.markers);
+
+
+    const popup = new mapboxgl.Popup({ closeOnClick: false })
+      .setLngLat([7.36, 46.26])
+      .setHTML('<h1>you have 5 loadings</h1>')
+      .addTo(map);
 
     //if (markers.length > 0) {
       markers.forEach((marker) => {
