@@ -1,27 +1,35 @@
-<div class="card-loading">
-  <h2><strong><%= @loading.name %></strong></h2>
-<p> <strong><u>Location:</u></strong> <%= @loading.address %></p>
-<p> <i>What do you have to Load/Unload ?</i></p>
-    <% @loading.materials.each do |material| %>
-      <p><%if material.quantity > 0 %>
-      <li>Load <strong><%= material.quantity %></strong> pallets of <strong><%= material.name %></strong></li></p>
-      <%else %>
-      <li>Unload <strong><%= material.quantity %></strong> pallets of <strong><%= material.name %></strong></li></p>
-      <%end %>
-    <% end %>
-
-<div>
-<input type="checkbox" id="complete" name="complete"> <label for="complete">Complete</label>
+<div class="head_deliveries">
+  <h1><%= @loading.name %></h1>
+  <div class="nav-item dropdown">
+      <i class="fa-duotone fa-angles-down"data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+        <div class="dropdown-menu dropdown-menu-end">
+        <%=link_to "All loadings", delivery_path(Delivery.find(@loading.delivery_id)), class: "dropdown-item" %>
+        <%# if current_user.function == "manager" %>
+          <%=link_to "Delete Loading", delivery_loading_path(@loading), method: :delete,  data: { confirm: "Are you sure?" }, class: "dropdown-item" %>
+        <%# end %>
+    </div>
+  </div>
 </div>
 
-
-<%=link_to "Delete Loading",
-            delivery_loading_path(@loading),
-            method: :delete,
-            data: { confirm: "Are you sure?" },
-            class: "btn btn-gradient" %>
+<div class="container py-4">
+  <div class="card-delivery">
+    <div class="card-delivery-infos">
+      <p> <strong>Location:</strong> <%= @loading.address %></p>
+          <% @loading.materials.each do |material| %>
+            <p><%if material.quantity > 0 %>
+              Load <strong><%= material.quantity %></strong> pallets of <strong><%= material.name %></strong></p>
+            <%else %>
+              Unload <strong><%= - material.quantity %></strong> pallets of <strong><%= material.name %></strong></p>
+            <%end %>
+          <% end %>
+        <input type="checkbox" id="complete" name="complete"> <label for="complete">Complete</label>
+      <div>
+    </div>
+  </div>
 </div>
 
 <div id="map"
-     data-markers="<%= @markers.to_json %>"
-     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+    style="width:100%"
+    data-markers="<%= @markers.to_json %>"
+    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+</div>
