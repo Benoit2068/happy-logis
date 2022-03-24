@@ -37,6 +37,16 @@
       <% end %>
     </div>
   </div>
+
+
+<div id="map"
+    style="width:100%"
+    data-markers="<%= @markers.to_json %>"
+    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+</div>
+
+<%= link_to "Add a Loading", new_delivery_loading_path(@delivery), class: "btn btn-primary bottom mx-auto d-block"  %>
+
   <% if Loading.where(delivery_id: @delivery).presence %>
     <div id="map"
         style="width:100%"
@@ -44,4 +54,5 @@
         data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
   <% end %>
+
 </div>
