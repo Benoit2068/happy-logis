@@ -39,16 +39,27 @@
   <% Loading.where(delivery_id: @delivery).each_with_index do |loading, index| %>
       <% if index == 0 %>
         <% if loading.done? %>
-          <li><div class="node green"></div>
-          <h3><%= loading.name %></h3>
-          </li>
-        <% else %>
-          <li><div class="node grey"></div><p><%= loading.name %></p></li>
-        <% end %>
+          <div class="progress-step">
+            <div class="progress-schema">
+              <li><div class="node green"></div></li>
+            </div>
+            <div class="progress-info"><h3><%= loading.name %></h3></div>
+        </div>
+          <% else %>
+          <div class="progress-step">
+            <div class="progress-info"><h3><%= loading.name %></h3></div>
+            <li><div class="node grey"></div></li>
+          </div>
+          <% end %>
       <% else %>
         <% if loading.done? %>
-          <li><div class="divider green"></div></li>
-          <li><div class="node green"></div><p><%= loading.name %></p></li>
+          <div class="progress-step">
+            <div class="progress-schema">
+              <li><div class="divider green"></div></li>
+              <li><div class="node green"></div></li>
+            </div>
+            <div class="progress-info"><h3><%= loading.name %></h3></div>
+          </div>
         <% else %>
           <li><div class="divider grey"></div></li>
           <li><div class="node grey"></div><p><%= loading.name %></p></li>

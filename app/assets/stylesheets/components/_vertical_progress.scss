@@ -4,6 +4,15 @@ body {
     font-family: Helvetica, sans-serif;
 }
 
+#progress {
+    display: flex;
+    flex-direction: column;
+}
+
+.progress-step {
+  display: flex;
+  justify-content: space-around;
+}
 
 
 input[type="button"] {
