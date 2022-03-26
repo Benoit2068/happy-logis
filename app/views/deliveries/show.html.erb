@@ -1,15 +1,12 @@
 
 <div class="head_deliveries">
-  <h1><%= @delivery.name %></h1>
-  <div class="nav-item dropdown">
-    <%= icon('fa-solid', 'caret-down', data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) %>
-    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-      <%= link_to "My deliveries", my_deliveries_path, class: "dropdown-item" %>
-      <%# if current_user.function == "manager" %>
-      <%= link_to "Add a Loading", new_delivery_loading_path(@delivery), class: "dropdown-item" %>
-      <%# end %>
-    </div>
-  </div>
+
+    <%= link_to my_deliveries_path do %>
+      <%= icon('fa-solid', 'caret-left') %>
+    <% end %>
+
+<h1>
+  <%= @delivery.name %></h1>
 </div>
 
 <ul id="progress">
@@ -18,9 +15,9 @@
       <% if loading.done? %>
         <% if Loading.where(delivery_id: @delivery)[index+1].done? %>
           <li>
-            <div class="node green"></div>
+            <div class="node blue"></div>
             <div class="progress-info">
-              <div class="divider green"></div>
+              <div class="divider blue"></div>
               <h3>
                 <%= loading.name %>
                 <%= link_to delivery_loading_path(@delivery, loading) do %>
@@ -32,7 +29,7 @@
           </li>
         <% else %>
           <li>
-            <div class="node green"></div>
+            <div class="node blue"></div>
             <div class="progress-info">
               <div class="divider grey"></div>
               <h3>
@@ -63,11 +60,11 @@
     <% elsif index < Loading.where(delivery_id: @delivery).count-1 %>
       <% if loading.done? %>
         <% if Loading.where(delivery_id: @delivery)[index+1].done? %>
-        <li><div class="divider green"></div></li>
+        <li><div class="divider blue"></div></li>
         <li>
-          <div class="node green"></div>
+          <div class="node blue"></div>
           <div class="progress-info">
-            <div class="divider green"></div>
+            <div class="divider blue"></div>
             <h3>
               <%= loading.name %>
               <%= link_to delivery_loading_path(@delivery, loading) do %>
@@ -78,8 +75,8 @@
           </div>
         </li>
         <% else %>
-          <li><div class="divider green"></div></li>
-          <li><div class="node green"></div>
+          <li><div class="divider blue"></div></li>
+          <li><div class="node blue"></div>
             <div class="progress-info">
               <div class="divider grey"></div>
               <h3>
@@ -109,8 +106,8 @@
       <% end %>
     <% elsif index == Loading.where(delivery_id: @delivery).count-1 %>
       <% if loading.done? %>
-        <li><div class="divider green"></div></li>
-        <li><div class="node green"></div>
+        <li><div class="divider blue"></div></li>
+        <li><div class="node blue"></div>
           <div class="progress-info" style="margin-top:40px">
             <h3>
               <%= loading.name %>
@@ -139,6 +136,9 @@
   <% end %>
 </ul>
 
+<%# if current_user.function == "manager" %>
+  <%= link_to "Add a Loading", new_delivery_loading_path(@delivery), class: "btn btn-gradient" %>
+<%# end %>
 
   <% if Loading.where(delivery_id: @delivery).presence %>
     <div id="map"

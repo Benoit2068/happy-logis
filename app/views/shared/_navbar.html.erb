@@ -4,7 +4,13 @@
       <%= image_tag "logo-small.png" %>
     </a>
     <% if user_signed_in? %>
+    <div class="nav-item dropdown">
+    <%= icon('fa-solid', 'caret-down', data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) %>
+    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+      <%= link_to "My deliveries", my_deliveries_path, class: "dropdown-item" %>
       <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+    </div>
+  </div>
     <% end %>
   </div>
 </div>
