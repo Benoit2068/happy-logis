@@ -9,6 +9,22 @@ body {
     flex-direction: column;
 }
 
+#progress h3 {
+    margin-left: 25px;
+    margin-top: -60px;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#progress p {
+    font-size: 16px;
+    line-height: 1.4;
+    opacity: .7;
+    margin-bottom: 0;
+    text-align: center;
+}
+
 .progress-step {
   display: flex;
   // justify-content: space-around;
@@ -24,8 +40,8 @@ input[type="button"] {
     margin-top: 20px;
 }
 .node {
-    height: 10px;
-    width: 10px;
+    height: 15px;
+    width: 15px;
     border-radius: 50%;
     display:inline-block;
     transition: all 1000ms ease;
@@ -37,8 +53,8 @@ input[type="button"] {
 
 .divider {
     height: 40px;
-    width: 2px;
-    margin-left: 4px;
+    width: 4px;
+    margin-left: 5.9px;
     transition: all 800ms ease;
 }
 

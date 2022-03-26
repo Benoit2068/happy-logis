@@ -21,7 +21,7 @@
             <% if loading.done? %>
               <div class="card-delivery" style="border-color:#a5e0a5;border-style:solid">
                 <div class="card-delivery-infos">
-                  <h2><%= loading.name %></h2>
+                  <h3><%= loading.name %></h3>
                   <p> <%= loading.address.split(', ').last %></p>
                   <p> <%= loading.date %></p>
                 </div>
@@ -29,7 +29,7 @@
             <% else  %>
               <div class="card-delivery" style="border-color:#dd8787;border-style:solid">
                 <div class="card-delivery-infos">
-                  <h2><%= loading.name %></h2>
+                  <h3><%= loading.name %></h3>
                   <p> <%= loading.address.split(', ').last %></p>
                   <p> <%= loading.date %></p>
                 </div>
@@ -39,103 +39,93 @@
         <% end %>
       </div>
     </div>
-  <ul id="progress">
+
+
+
+<ul id="progress">
   <% Loading.where(delivery_id: @delivery).each_with_index do |loading, index| %>
-      <% if index == 0 %>
-        <% if loading.done? %>
-          <div class="progress-step">
-            <div class="progress-schema">
-              <li><div class="node green"></div></li>
+    <% if index == 0 %>
+      <% if loading.done? %>
+        <% if Loading.where(delivery_id: @delivery)[index+1].done? %>
+          <li>
+            <div class="node green"></div>
+            <div class="progress-info">
+              <div class="divider green"></div>
+              <h3><%= loading.name %></h3>
+              <p><%= loading.address.split(', ').last %></p>
             </div>
-            <div class="progress-info"><h3><%= loading.name %></h3></div>
-          </div>
-          <% else %>
-          <div class="progress-step">
-            <li><div class="node grey"></div></li>
-            <div class="progress-info"><h3><%= loading.name %></h3></div>
-          </div>
-          <% end %>
-      <% else %>
-        <% if loading.done? %>
-          <div class="progress-step">
-              <div class="progress-schema">
-              </div>
-              <div class="progress-schema">
-                <li><div class="divider green"></div></li>
-                <li><div class="node green">
-                    <div class="progress-info"><h3><%= loading.name %></h3></div>
-
-                </div></li>
-              </div>
-          </div>
-
-
+          </li>
         <% else %>
-          <li><div class="divider grey"></div></li>
-          <li><div class="node grey"></div><p><%= loading.name %></p></li>
+          <li>
+            <div class="node green"></div>
+            <div class="progress-info">
+              <div class="divider grey"></div>
+              <h3><%= loading.name %></h3>
+              <p><%= loading.address.split(', ').last %></p>
+            </div>
+          </li>
         <% end %>
-      <% end %>
-<<<<<<< HEAD
-  <% end %>
-  </ul>
-<%# ------------------- %>
-  <ul id="progress">
-  <% Loading.where(delivery_id: @delivery).each_with_index do |loading, index| %>
-      <% if index == 0 %>
-        <% if loading.done? %>
-
-
-              <li>
-                <div class="node green"></div>
-                  <div class="progress-info">
-                    <p><%= loading.name %></p>
-                    <p> <%= loading.address.split(', ').last %></p>
-                    <p> <%= loading.date %></p>
-                  </div>
-              </li>
-
-
-
-          <% else %>
-            <li><div class="node grey"></div><p><%= loading.name %></p></li>
-
-          <% end %>
       <% else %>
-        <% if loading.done? %>
-
-
-
-
-                <li><div class="divider green"></div></li>
-                <li><div class="node green"></div><p><%= loading.name %></p></li>
-
-
-
-
-
-        <% else %>
-          <li><div class="divider grey"></div></li>
-          <li><div class="node grey"></div><p><%= loading.name %></p></li>
-        <% end %>
+s
       <% end %>
+    <% elsif index < Loading.where(delivery_id: @delivery).count-1 %>
+      <% if loading.done? %>
+        <% if Loading.where(delivery_id: @delivery)[index+1].done? %>
+        <li><div class="divider green"></div></li>
+        <li>
+          <div class="node green"></div>
+          <div class="progress-info">
+            <div class="divider green"></div>
+            <h3><%= loading.name %></h3>
+            <p><%= loading.address.split(', ').last %></p>
+          </div>
+        </li>
+        <% else %>
+          <li><div class="divider green"></div></li>
+          <li><div class="node green"></div>
+            <div class="progress-info">
+              <div class="divider grey"></div>
+              <h3><%= loading.name %></h3>
+              <p><%= loading.address.split(', ').last %></p>
+            </div>
+          </li>
+        <% end %>
+      <% else %>
+        <li><div class="divider grey"></div></li>
+        <li><div class="node grey"></div>
+          <div class="progress-info">
+            <div class="divider grey"></div>
+            <h3><%= loading.name %></h3>
+            <p><%= loading.address.split(', ').last %></p>
+          </div>
+        </li>
+      <% end %>
+    <% elsif index == Loading.where(delivery_id: @delivery).count-1 %>
+      <% if loading.done? %>
+        <li><div class="divider green"></div></li>
+        <li><div class="node green"></div>
+          <div class="progress-info">
+            <h3><%= loading.name %></h3>
+            <p><%= loading.address.split(', ').last %></p>
+          </div>
+        </li>
+      <% else %>
+        <li><div class="divider grey"></div></li>
+        <li><div class="node grey"></div>
+          <div class="progress-info">
+            <h3><%= loading.name %></h3>
+            <p><%= loading.address.split(', ').last %></p>
+          </div>
+        </li>
+      <% end %>
+    <% end %>
   <% end %>
-  </ul>
+</ul>
 
 
 
-=======
-    </div>
-  </div>
 
 
-<div id="map"
-    style="width:100%"
-    data-markers="<%= @markers.to_json %>"
-    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-</div>
-
-<%= link_to "Add a Loading", new_delivery_loading_path(@delivery), class: "btn btn-primary bottom mx-auto d-block"  %>
->>>>>>> master
 
   <% if Loading.where(delivery_id: @delivery).presence %>
     <div id="map"
