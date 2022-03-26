@@ -10,7 +10,7 @@ class LoadingsController < ApplicationController
       lat: @loading.latitude,
       lng: @loading.longitude
     }]
-    #@material = Material.new
+    @loadingmaterial = Loadingmaterial.new
   end
 
   def new
