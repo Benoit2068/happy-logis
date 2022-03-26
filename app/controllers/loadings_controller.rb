@@ -1,5 +1,5 @@
 class LoadingsController < ApplicationController
-  before_action :set_loading, only: [:show, :edit, :update, :destroy]
+  before_action :set_loading, only: [:show, :edit, :update, :destroy, :toggle]
 
   def index
      @loadings = Loading.all
@@ -37,6 +37,11 @@ class LoadingsController < ApplicationController
   def destroy
     @loading.destroy
     redirect_to delivery_path(@loading.delivery_id)
+  end
+
+  def toggle
+    @loading.toggle(:done)
+    @loading.save
   end
 
   private

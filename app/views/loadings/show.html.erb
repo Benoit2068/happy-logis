@@ -22,7 +22,12 @@
               Unload <strong><%= - material.quantity %></strong> pallets of <strong><%= material.name %></strong></p>
             <%end %>
           <% end %>
-        <input type="checkbox" id="complete" name="complete"> <label for="complete">Complete</label>
+      <p><%= check_box_tag 'done', @loading.id, @loading.done,
+      data: {
+        remote: true,
+        url: url_for(action: :toggle, id: @loading.id),
+        method: "POST"
+      } %> Complete</p>
       <div>
     </div>
   </div>
