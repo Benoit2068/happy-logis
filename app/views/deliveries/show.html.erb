@@ -44,22 +44,28 @@
               <li><div class="node green"></div></li>
             </div>
             <div class="progress-info"><h3><%= loading.name %></h3></div>
-        </div>
+          </div>
           <% else %>
           <div class="progress-step">
-            <div class="progress-info"><h3><%= loading.name %></h3></div>
             <li><div class="node grey"></div></li>
+            <div class="progress-info"><h3><%= loading.name %></h3></div>
           </div>
           <% end %>
       <% else %>
         <% if loading.done? %>
           <div class="progress-step">
-            <div class="progress-schema">
-              <li><div class="divider green"></div></li>
-              <li><div class="node green"></div></li>
-            </div>
-            <div class="progress-info"><h3><%= loading.name %></h3></div>
+              <div class="progress-schema">
+              </div>
+              <div class="progress-schema">
+                <li><div class="divider green"></div></li>
+                <li><div class="node green">
+                    <div class="progress-info"><h3><%= loading.name %></h3></div>
+
+                </div></li>
+              </div>
           </div>
+
+
         <% else %>
           <li><div class="divider grey"></div></li>
           <li><div class="node grey"></div><p><%= loading.name %></p></li>
@@ -67,6 +73,50 @@
       <% end %>
   <% end %>
   </ul>
+<%# ------------------- %>
+  <ul id="progress">
+  <% Loading.where(delivery_id: @delivery).each_with_index do |loading, index| %>
+      <% if index == 0 %>
+        <% if loading.done? %>
+
+
+              <li>
+                <div class="node green"></div>
+                  <div class="progress-info">
+                    <p><%= loading.name %></p>
+                    <p> <%= loading.address.split(', ').last %></p>
+                    <p> <%= loading.date %></p>
+                  </div>
+              </li>
+
+
+
+          <% else %>
+            <li><div class="node grey"></div><p><%= loading.name %></p></li>
+
+          <% end %>
+      <% else %>
+        <% if loading.done? %>
+
+
+
+
+                <li><div class="divider green"></div></li>
+                <li><div class="node green"></div><p><%= loading.name %></p></li>
+
+
+
+
+
+        <% else %>
+          <li><div class="divider grey"></div></li>
+          <li><div class="node grey"></div><p><%= loading.name %></p></li>
+        <% end %>
+      <% end %>
+  <% end %>
+  </ul>
+
+
 
 
   <% if Loading.where(delivery_id: @delivery).presence %>

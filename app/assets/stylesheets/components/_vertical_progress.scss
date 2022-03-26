@@ -11,7 +11,12 @@ body {
 
 .progress-step {
   display: flex;
-  justify-content: space-around;
+  // justify-content: space-around;
+}
+
+.progress-info {
+  display: flex;
+  flex-direction: column;
 }
 
 
