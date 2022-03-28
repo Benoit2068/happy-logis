@@ -49,60 +49,36 @@ load_5 = Loading.create({date: Date.today, name: "Centrale Coop Aclens", address
 
 puts "load #{load_1.address}, #{load_2.address}, #{load_3.address}, #{load_4.address}, #{load_5.address},  create"
 
+meat = Material.create({ name: 'meat' })
+wheat = Material.create({ name: 'wheat' })
+egg = Material.create({ name: 'egg' })
+beer = Material.create({ name: 'beer' })
+milk = Material.create({ name: 'milk' })
+wood = Material.create({ name: 'wood' })
 
-material_meal_load = Material.create({ name: 'meal', quantity: 4 })
-material_egg_load = Material.create({ name: 'egg', quantity: 2 })
-material_beer_load = Material.create({ name: 'beer', quantity: 9 })
-
-material_meal_unload_1 = Material.create({ name: 'meal', quantity: -2 })
-material_meal_unload_2 = Material.create({ name: 'meal', quantity: -2 })
-material_egg_unload = Material.create({ name: 'egg', quantity: -2 })
-material_beer_unload = Material.create({ name: 'beer', quantity: -9 })
-
-puts "material #{material_meal_load.name}: #{material_meal_load.quantity}  create"
-puts "material #{material_egg_load.name}: #{material_egg_load.quantity}  create"
-puts "material #{material_beer_load.name}: #{material_beer_load.quantity}  create"
-puts "material #{material_meal_unload_1.name}: #{material_meal_unload_1.quantity}  create"
-puts "material #{material_meal_unload_2.name}: #{material_meal_unload_2.quantity}  create"
-puts "material #{material_egg_unload.name}: #{material_egg_unload.quantity}  create"
-puts "material #{material_beer_unload.name}: #{material_beer_unload.quantity}  create"
+puts "material #{meat.name} created"
+puts "material #{wheat.name} created"
+puts "material #{egg.name}  created"
+puts "material #{beer.name} created"
+puts "material #{milk.name} created"
+puts "material #{wood.name} created"
 
 
 
+loading_material1 = Loadingmaterial.create({ loading_id: load_1.id, material_id: meat.id, quantity: 2 })
+loading_material2 = Loadingmaterial.create({ loading_id: load_2.id, material_id: egg.id, quantity: 3 })
+loading_material3 = Loadingmaterial.create({ loading_id: load_3.id, material_id: beer.id, quantity: 4 })
 
-loading_material_meal = Loadingmaterial.new
-loading_material_meal.loading = load_1
-loading_material_meal.material = material_meal_load
-loading_material_meal.save
+puts "loadingmaterial #{loading_material1.material.name}: #{loading_material1.quantity}  created"
+puts "loadingmaterial #{loading_material2.material.name}: #{loading_material2.quantity}  created"
+puts "loadingmaterial #{loading_material3.material.name}: #{loading_material3.quantity}  created"
 
-loading_material_egg = Loadingmaterial.new
-loading_material_egg.loading = load_2
-loading_material_egg.material = material_egg_load
-loading_material_egg.save
+loading_material4 = Loadingmaterial.create({ loading_id: load_4.id, material_id: wheat.id, quantity: -1 })
+loading_material5 = Loadingmaterial.create({ loading_id: load_5.id, material_id: milk.id, quantity: -2 })
+loading_material6 = Loadingmaterial.create({ loading_id: load_3.id, material_id: wood.id, quantity: -3 })
 
-loading_material_beer = Loadingmaterial.create({loading_id: load_3, material_id: material_beer_load})
-loading_material_beer.loading = load_3
-loading_material_beer.material = material_beer_load
-loading_material_beer.save
+puts "unloadingmaterial #{loading_material4.material.name}: #{loading_material4.quantity}  created"
+puts "unloadingmaterial #{loading_material5.material.name}: #{loading_material5.quantity}  created"
+puts "unloadingmaterial #{loading_material6.material.name}: #{loading_material6.quantity}  created"
 
-unloading_material_meal_1 = Loadingmaterial.new
-unloading_material_meal_1.loading = load_4
-unloading_material_meal_1.material = material_meal_unload_1
-unloading_material_meal_1.save
-
-unloading_material_meal_2 = Loadingmaterial.new
-unloading_material_meal_2.loading = load_5
-unloading_material_meal_2.material = material_meal_unload_2
-unloading_material_meal_2.save
-
-unloading_material_egg = Loadingmaterial.new
-unloading_material_egg.loading = load_5
-unloading_material_egg.material = material_egg_unload
-unloading_material_egg.save
-
-unloading_material_beer = Loadingmaterial.new
-unloading_material_beer.loading = load_5
-unloading_material_beer.material = material_beer_unload
-unloading_material_beer.save
-
-puts "seed create"
+puts "seed created"
