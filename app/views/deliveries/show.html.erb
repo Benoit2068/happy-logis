@@ -2,11 +2,11 @@
 <div class="head_deliveries">
   <% if current_user.function == "manager" %>
     <%= link_to deliveries_path do %>
-      <%= icon('fa-solid', 'caret-left') %>
+      <%= icon('fa-solid', 'angles-left') %>
     <% end %>
   <% else %>
     <%= link_to my_deliveries_path do %>
-      <%= icon('fa-solid', 'caret-left') %>
+      <%= icon('fa-solid', 'angles-left') %>
     <% end %>
   <% end %>
   <h1><%= @delivery.name %></h1>

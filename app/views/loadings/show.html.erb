@@ -1,10 +1,9 @@
 <div class="head_deliveries">
     <%= link_to delivery_path(Delivery.find(@loading.delivery_id)) do %>
-      <%= icon('fa-solid', 'caret-left') %>
+      <%= icon('fa-solid', 'angles-left') %>
     <% end %>
     <h1><%= @loading.name %></h1>
 </div>
-
 
 <div class="container py-4">
   <div class="card-delivery">
@@ -12,9 +11,13 @@
       <p> <strong>Location:</strong> <%= @loading.address %></p>
           <% @loading.loadingmaterials.each do |loadingmaterial| %>
             <p><%if loadingmaterial.quantity > 0 %>
-              Load <strong><%= loadingmaterial.quantity %></strong> pallets of <strong><%= loadingmaterial.material.name %></strong></p>
+              <%= icon('fa-solid', 'arrow-right') %>
+              <%= icon('fa-solid', 'truck-ramp-box') %>
+              <strong><%= loadingmaterial.quantity %></strong> pallets of <strong><%= loadingmaterial.material.name %></strong></p>
             <%else %>
-              Unload <strong><%= - loadingmaterial.quantity %></strong> pallets of <strong><%= loadingmaterial.material.name %></strong></p>
+              <%= icon('fa-solid', 'arrow-left') %>
+              <%= icon('fa-solid', 'truck-ramp-box') %>
+              <%= icon('fa-solid', 'truck-ramp') %> <strong><%=  - loadingmaterial.quantity %></strong> pallets of <strong><%= loadingmaterial.material.name %></strong></p>
             <%end %>
           <% end %>
       <p><%= check_box_tag 'done', @loading.id, @loading.done,
