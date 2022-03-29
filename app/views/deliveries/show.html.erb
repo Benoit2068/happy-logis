@@ -1,9 +1,15 @@
 
 <div class="head_deliveries">
+  <% if current_user.function == "manager" %>
+    <%= link_to deliveries_path do %>
+      <%= icon('fa-solid', 'caret-left') %>
+    <% end %>
+  <% else %>
     <%= link_to my_deliveries_path do %>
       <%= icon('fa-solid', 'caret-left') %>
     <% end %>
-    <h1><%= @delivery.name %></h1>
+  <% end %>
+  <h1><%= @delivery.name %></h1>
 </div>
 
 <ul id="progress">
@@ -131,11 +137,11 @@
       <% end %>
     <% end %>
   <% end %>
+<% if current_user.function == "manager" %>
+  <%= link_to "Add a Loading", new_delivery_loading_path(@delivery), class: "btn btn-gradient" %>
+<% end %>
 </ul>
 
-<%# if current_user.function == "manager" %>
-  <%= link_to "Add a Loading", new_delivery_loading_path(@delivery), class: "btn btn-gradient" %>
-<%# end %>
 
   <% if Loading.where(delivery_id: @delivery).presence %>
     <div id="map"

@@ -1,6 +1,5 @@
 .head_deliveries {
   background-color: #5CE1E6;
-  // text-align: center;
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
   padding-bottom: 2px;
@@ -13,13 +12,8 @@
   color: white;
   font-weight: bolder;
   text-align: center;
-flex-grow: 10;
+  flex-grow: 10;
 }
-
-.head_deliveries .fa-caret-left {
-}
-
-
 
 .head_deliveries h2 {
   color: white;

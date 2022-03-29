@@ -1,0 +1,17 @@
+<div class="head_deliveries">
+    <h1>All deliveries :</h1>
+</div>
+<div class="container py-4">
+      <div class="cards">
+        <% @deliveries.each do |delivery| %>
+            <div class="card-delivery">
+              <div class="card-delivery-infos">
+                <h2><%= delivery.name %></h2>
+                <p><%= delivery.startdate.strftime("%d/%m/%Y") %></p>
+                <p><%= delivery.user.name %></p>
+              </div>
+                <%= link_to "Delivery details", delivery_path(delivery), class: "btn btn-gradient" %>
+            </div>
+        <% end %>
+  </div>
+</div>
