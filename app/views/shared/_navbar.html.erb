@@ -4,11 +4,17 @@
       <%= image_tag "logo-small.png" %>
     </a>
     <% if user_signed_in? %>
-      <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+    <div class="nav-item dropdown">
+    <%= icon('fa-solid', 'caret-down', data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) %>
+    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+      <% if current_user.function == "manager" %>
+        <%= link_to "All deliveries", deliveries_path, class: "dropdown-item" %>
+      <% else %>
+        <%= link_to "My deliveries", my_deliveries_path, class: "dropdown-item" %>
+      <% end %>
+      <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link"%>
+    </div>
+  </div>
     <% end %>
-
-
-
-
   </div>
 </div>

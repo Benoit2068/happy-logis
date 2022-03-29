@@ -1,21 +1,21 @@
 .head_deliveries {
   background-color: #5CE1E6;
-  text-align: center;
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
   padding-bottom: 2px;
+  padding-right: 20px;
+  padding-left: 20px;
   display: flex;
-  justify-content: space-around;
 }
 
 .head_deliveries h1 {
   color: white;
   font-weight: bolder;
-  padding-top: 4px;
+  text-align: center;
+  flex-grow: 10;
 }
 
 .head_deliveries h2 {
   color: white;
   font-weight: bolder;
-
 }
