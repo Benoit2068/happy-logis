@@ -1,51 +1,147 @@
 
 <div class="head_deliveries">
+  <% if current_user.function == "manager" %>
+    <%= link_to deliveries_path do %>
+      <%= icon('fa-solid', 'caret-left') %>
+    <% end %>
+  <% else %>
+    <%= link_to my_deliveries_path do %>
+      <%= icon('fa-solid', 'caret-left') %>
+    <% end %>
+  <% end %>
   <h1><%= @delivery.name %></h1>
-  <div class="nav-item dropdown">
-    <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-      <%= link_to "My deliveries", my_deliveries_path, class: "dropdown-item" %>
-      <%# if current_user.function == "manager" %>
-      <%= link_to "Add a Loading", new_delivery_loading_path(@delivery), class: "dropdown-item" %>
-      <%# end %>
-    </div>
-  </div>
 </div>
 
-<div class="container py-4">
-  <div class="cards mb-3">
-      <% Loading.where(delivery_id: @delivery).each do |loading| %>
-        <%= link_to delivery_loading_path(@delivery, loading) do %>
-          <% if loading.done? %>
-            <div class="card-delivery" style="border-color:#a5e0a5;border-style:solid">
-              <div class="card-delivery-infos">
-                <h2><%= loading.name %></h2>
-                <p> <%= loading.address.split(', ').last %></p>
-                <p> <%= loading.date %></p>
-              </div>
+<ul id="progress">
+  <% Loading.where(delivery_id: @delivery).each_with_index do |loading, index| %>
+    <% if index == 0 %>
+      <% if loading.done? %>
+        <% if Loading.where(delivery_id: @delivery)[index+1].done? %>
+          <li>
+            <div class="node blue"></div>
+            <div class="progress-info">
+              <div class="divider blue"></div>
+              <h3>
+                <%= loading.name %>
+                <%= link_to delivery_loading_path(@delivery, loading) do %>
+                  <%= icon('fa-solid', 'play') %>
+                <% end %>
+              </h3>
+              <p><%= loading.address.split(', ').last %></p>
             </div>
-          <% else  %>
-            <div class="card-delivery" style="border-color:#dd8787;border-style:solid">
-              <div class="card-delivery-infos">
-                <h2><%= loading.name %></h2>
-                <p> <%= loading.address.split(', ').last %></p>
-                <p> <%= loading.date %></p>
-              </div>
+          </li>
+        <% else %>
+          <li>
+            <div class="node blue"></div>
+            <div class="progress-info">
+              <div class="divider grey"></div>
+              <h3>
+                <%= loading.name %>
+                <%= link_to delivery_loading_path(@delivery, loading) do %>
+                  <%= icon('fa-solid', 'play') %>
+                <% end %>
+              </h3>
+              <p><%= loading.address.split(', ').last %></p>
             </div>
-          <% end %>
+          </li>
         <% end %>
+      <% else %>
+        <li>
+          <div class="node grey"></div>
+          <div class="progress-info">
+            <div class="divider grey"></div>
+            <h3>
+              <%= loading.name %>
+              <%= link_to delivery_loading_path(@delivery, loading) do %>
+                <%= icon('fa-solid', 'play') %>
+              <% end %>
+            </h3>
+            <p><%= loading.address.split(', ').last %></p>
+          </div>
+        </li>
       <% end %>
-    </div>
-  </div>
+    <% elsif index < Loading.where(delivery_id: @delivery).count-1 %>
+      <% if loading.done? %>
+        <% if Loading.where(delivery_id: @delivery)[index+1].done? %>
+        <li><div class="divider blue"></div></li>
+        <li>
+          <div class="node blue"></div>
+          <div class="progress-info">
+            <div class="divider blue"></div>
+            <h3>
+              <%= loading.name %>
+              <%= link_to delivery_loading_path(@delivery, loading) do %>
+                <%= icon('fa-solid', 'play') %>
+              <% end %>
+            </h3>
+            <p><%= loading.address.split(', ').last %></p>
+          </div>
+        </li>
+        <% else %>
+          <li><div class="divider blue"></div></li>
+          <li><div class="node blue"></div>
+            <div class="progress-info">
+              <div class="divider grey"></div>
+              <h3>
+                <%= loading.name %>
+                <%= link_to delivery_loading_path(@delivery, loading) do %>
+                  <%= icon('fa-solid', 'play') %>
+                <% end %>
+              </h3>
+              <p><%= loading.address.split(', ').last %></p>
+            </div>
+          </li>
+        <% end %>
+      <% else %>
+        <li><div class="divider grey"></div></li>
+        <li><div class="node grey"></div>
+          <div class="progress-info">
+            <div class="divider grey"></div>
+            <h3>
+              <%= loading.name %>
+              <%= link_to delivery_loading_path(@delivery, loading) do %>
+                <%= icon('fa-solid', 'play') %>
+              <% end %>
+            </h3>
+            <p><%= loading.address.split(', ').last %></p>
+          </div>
+        </li>
+      <% end %>
+    <% elsif index == Loading.where(delivery_id: @delivery).count-1 %>
+      <% if loading.done? %>
+        <li><div class="divider blue"></div></li>
+        <li><div class="node blue"></div>
+          <div class="progress-info" style="margin-top:40px">
+            <h3>
+              <%= loading.name %>
+              <%= link_to delivery_loading_path(@delivery, loading) do %>
+                <%= icon('fa-solid', 'play') %>
+              <% end %>
+            </h3>
+            <p><%= loading.address.split(', ').last %></p>
+          </div>
+        </li>
+      <% else %>
+        <li><div class="divider grey"></div></li>
+        <li><div class="node grey"></div>
+          <div class="progress-info" style="margin-top:40px">
+            <h3>
+              <%= loading.name %>
+              <%= link_to delivery_loading_path(@delivery, loading) do %>
+                <%= icon('fa-solid', 'play') %>
+              <% end %>
+            </h3>
+            <p><%= loading.address.split(', ').last %></p>
+          </div>
+        </li>
+      <% end %>
+    <% end %>
+  <% end %>
+<% if current_user.function == "manager" %>
+  <%= link_to "Add a Loading", new_delivery_loading_path(@delivery), class: "btn btn-gradient" %>
+<% end %>
+</ul>
 
-
-<div id="map"
-    style="width:100%"
-    data-markers="<%= @markers.to_json %>"
-    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-</div>
-
-<%= link_to "Add a Loading", new_delivery_loading_path(@delivery), class: "btn btn-primary bottom mx-auto d-block"  %>
 
   <% if Loading.where(delivery_id: @delivery).presence %>
     <div id="map"
