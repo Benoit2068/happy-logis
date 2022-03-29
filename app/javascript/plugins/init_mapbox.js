@@ -16,6 +16,15 @@ const initMapbox = () => {
 
     map.addControl(new mapboxgl.FullscreenControl());
 
+
+    map.addControl(new mapboxgl.GeolocateControl({
+      positionOptions: {
+        enableHighAccuracy: true
+      },
+      trackUserLocation: true,
+      showUserHeading: true
+    }));
+
     const markers = JSON.parse(mapElement.dataset.markers);
 
 
