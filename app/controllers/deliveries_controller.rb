@@ -11,7 +11,6 @@ class DeliveriesController < ApplicationController
   end
 
   def show
-
     @loading = Loading.new
 
     @markers = @delivery.loadings.geocoded.map do |loading|
