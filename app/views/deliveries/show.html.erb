@@ -27,17 +27,19 @@
                   <%= icon('fa-solid', 'play') %>
                 <% end %>
               </h3>
-              <p>
-                <%= loading.address.split(', ').last %>
-                <% sum = 0  %>
-                <% Loadingmaterial.where("loading_id <= #{loading.id}").unscope(where: @delivery).each do |lm| %>
-                  <% sum = sum + lm.quantity %>
-                <% end %>
-                <progress id="file" max="33" value="<%= sum %>"></progress>
-                <div class="progress">
-                  <div class="progress-bar" role="progressbar" style="width: <%= (sum.to_f/33*100).round %>%;" aria-valuenow="<%= (sum.to_f/33*100).round %>" aria-valuemin="0" aria-valuemax="100"><%= (sum.to_f/33*100).round %>%</div>
-                </div>
-              </p>
+              <div class="quantity-info">
+                <p>
+                  <%= loading.address.split(', ').last %>
+                  <% sum = 0  %>
+                  <% Loadingmaterial.where("loading_id <= #{loading.id}").unscope(where: @delivery).each do |lm| %>
+                    <% sum = sum + lm.quantity %>
+                  <% end %>
+
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: <%= (sum.to_f/33*100).round %>%;" aria-valuenow="<%= sum %>" aria-valuemin="0" aria-valuemax="33"><%= sum %> paletts</div>
+                  </div>
+                </p>
+              </div>
             </div>
           </li>
         <% else %>
