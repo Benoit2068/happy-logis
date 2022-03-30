@@ -33,8 +33,10 @@
                 <% Loadingmaterial.where("loading_id <= #{loading.id}").unscope(where: @delivery).each do |lm| %>
                   <% sum = sum + lm.quantity %>
                 <% end %>
-                <%= sum %>
-                <progress id="file" max="33" value="15"></progress>
+                <progress id="file" max="33" value="<%= sum %>"></progress>
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: <%= (sum.to_f/33*100).round %>%;" aria-valuenow="<%= (sum.to_f/33*100).round %>" aria-valuemin="0" aria-valuemax="100"><%= (sum.to_f/33*100).round %>%</div>
+                </div>
               </p>
             </div>
           </li>
@@ -56,6 +58,7 @@
                   <% sum = sum + lm.quantity %>
                 <% end %>
                 <%= sum %>
+                <progress id="file" max="33" value="<%= sum %>"></progress>
               </p>
             </div>
           </li>
@@ -78,6 +81,7 @@
                   <% sum = sum + lm.quantity %>
                 <% end %>
                 <%= sum %>
+                <progress id="file" max="33" value="<%= sum %>"></progress>
               </p>
           </div>
         </li>
@@ -103,6 +107,7 @@
                   <% sum = sum + lm.quantity %>
                 <% end %>
                 <%= sum %>
+                <progress id="file" max="33" value="<%= sum %>"></progress>
               </p>
           </div>
         </li>
@@ -124,6 +129,7 @@
                   <% sum = sum + lm.quantity %>
                 <% end %>
                 <%= sum %>
+                <progress id="file" max="33" value="<%= sum %>"></progress>
               </p>
             </div>
           </li>
@@ -146,6 +152,7 @@
                   <% sum = sum + lm.quantity %>
                 <% end %>
                 <%= sum %>
+                <progress id="file" max="33" value="<%= sum %>"></progress>
               </p>
           </div>
         </li>
@@ -168,6 +175,7 @@
                   <% sum = sum + lm.quantity %>
                 <% end %>
                 <%= sum %>
+                <progress id="file" max="33" value="<%= sum %>"></progress>
               </p>
           </div>
         </li>
@@ -188,6 +196,7 @@
                   <% sum = sum + lm.quantity %>
                 <% end %>
                 <%= sum %>
+                <progress id="file" max="33" value="<%= sum %>"></progress>
               </p>
           </div>
         </li>
@@ -198,13 +207,6 @@
     <%= link_to "Add a Loading", new_delivery_loading_path(@delivery), class: "btn btn-gradient" %>
   <% end %>
 </ul>
-
-<div class="progress" style="height: 20px;">
-  <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-</div>
-<progress id="file" max="100" value="30"> 30% </progress>
-
-
 
   <% if Loading.where(delivery_id: @delivery).presence %>
     <div id="map"

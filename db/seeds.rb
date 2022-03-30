@@ -66,16 +66,16 @@ puts "material #{wood.name} created"
 
 
 loading_material1 = Loadingmaterial.create({ loading_id: load_1.id, material_id: meat.id, quantity: 15 })
-loading_material2 = Loadingmaterial.create({ loading_id: load_2.id, material_id: egg.id, quantity: 3 })
-loading_material3 = Loadingmaterial.create({ loading_id: load_3.id, material_id: beer.id, quantity: 4 })
+loading_material2 = Loadingmaterial.create({ loading_id: load_2.id, material_id: egg.id, quantity: 10 })
+loading_material3 = Loadingmaterial.create({ loading_id: load_3.id, material_id: beer.id, quantity: 8 })
 
 puts "loadingmaterial #{loading_material1.material.name}: #{loading_material1.quantity}  created"
 puts "loadingmaterial #{loading_material2.material.name}: #{loading_material2.quantity}  created"
 puts "loadingmaterial #{loading_material3.material.name}: #{loading_material3.quantity}  created"
 
-loading_material4 = Loadingmaterial.create({ loading_id: load_4.id, material_id: wheat.id, quantity: -1 })
-loading_material5 = Loadingmaterial.create({ loading_id: load_5.id, material_id: milk.id, quantity: -2 })
-loading_material6 = Loadingmaterial.create({ loading_id: load_3.id, material_id: wood.id, quantity: -3 })
+loading_material4 = Loadingmaterial.create({ loading_id: load_4.id, material_id: wheat.id, quantity: -10 })
+loading_material5 = Loadingmaterial.create({ loading_id: load_5.id, material_id: milk.id, quantity: -8 })
+loading_material6 = Loadingmaterial.create({ loading_id: load_3.id, material_id: wood.id, quantity: -15 })
 
 puts "unloadingmaterial #{loading_material4.material.name}: #{loading_material4.quantity}  created"
 puts "unloadingmaterial #{loading_material5.material.name}: #{loading_material5.quantity}  created"
