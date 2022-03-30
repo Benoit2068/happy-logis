@@ -65,7 +65,7 @@ puts "material #{wood.name} created"
 
 
 
-loading_material1 = Loadingmaterial.create({ loading_id: load_1.id, material_id: meat.id, quantity: 2 })
+loading_material1 = Loadingmaterial.create({ loading_id: load_1.id, material_id: meat.id, quantity: 15 })
 loading_material2 = Loadingmaterial.create({ loading_id: load_2.id, material_id: egg.id, quantity: 3 })
 loading_material3 = Loadingmaterial.create({ loading_id: load_3.id, material_id: beer.id, quantity: 4 })
 
