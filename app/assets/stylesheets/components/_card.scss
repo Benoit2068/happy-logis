@@ -124,3 +124,12 @@ height: 300px;
 margin: 0 auto;
 border-style: solid;
 }
+
+.truck {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: #3887be;
+  pointer-events: none;
+}
