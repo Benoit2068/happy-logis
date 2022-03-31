@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_17_160233) do
+ActiveRecord::Schema.define(version: 2022_03_26_140152) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2022_03_17_160233) do
     t.bigint "loading_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "quantity"
     t.index ["loading_id"], name: "index_loadingmaterials_on_loading_id"
     t.index ["material_id"], name: "index_loadingmaterials_on_material_id"
   end
@@ -50,7 +51,6 @@ ActiveRecord::Schema.define(version: 2022_03_17_160233) do
 
   create_table "materials", force: :cascade do |t|
     t.string "name"
-    t.integer "quantity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

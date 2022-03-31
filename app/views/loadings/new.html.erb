@@ -1,4 +1,9 @@
-      <h1><%= @delivery.id%></h1>
+<div class="head_deliveries">
+  <%= link_to delivery_path(@delivery) do %>
+    <%= icon('fa-solid', 'caret-left') %>
+  <% end %>
+  <h1><%= @delivery.name %></h1>
+</div>
 
       <div class="card-loading rounded p-3 shadow">
         <h2>Add a New Loading</h2>

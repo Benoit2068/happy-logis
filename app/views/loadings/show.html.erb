@@ -1,32 +1,41 @@
 <div class="head_deliveries">
-  <h1><%= @loading.name %></h1>
-  <div class="nav-item dropdown">
-      <i class="fa-duotone fa-angles-down"data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-        <div class="dropdown-menu dropdown-menu-end">
-        <%=link_to "All loadings", delivery_path(Delivery.find(@loading.delivery_id)), class: "dropdown-item" %>
-        <%# if current_user.function == "manager" %>
-          <%=link_to "Delete Loading", delivery_loading_path(@loading), method: :delete,  data: { confirm: "Are you sure?" }, class: "dropdown-item" %>
-        <%# end %>
-    </div>
-  </div>
+    <%= link_to delivery_path(Delivery.find(@loading.delivery_id)) do %>
+      <%= icon('fa-solid', 'caret-left') %>
+    <% end %>
+    <h1><%= @loading.name %></h1>
 </div>
+
 
 <div class="container py-4">
   <div class="card-delivery">
     <div class="card-delivery-infos">
       <p> <strong>Location:</strong> <%= @loading.address %></p>
-          <% @loading.materials.each do |material| %>
-            <p><%if material.quantity > 0 %>
-              Load <strong><%= material.quantity %></strong> pallets of <strong><%= material.name %></strong></p>
+          <% @loading.loadingmaterials.each do |loadingmaterial| %>
+            <p><%if loadingmaterial.quantity > 0 %>
+              Load <strong><%= loadingmaterial.quantity %></strong> pallets of <strong><%= loadingmaterial.material.name %></strong></p>
             <%else %>
-              Unload <strong><%= - material.quantity %></strong> pallets of <strong><%= material.name %></strong></p>
+              Unload <strong><%= - loadingmaterial.quantity %></strong> pallets of <strong><%= loadingmaterial.material.name %></strong></p>
             <%end %>
           <% end %>
-        <input type="checkbox" id="complete" name="complete"> <label for="complete">Complete</label>
+      <p><%= check_box_tag 'done', @loading.id, @loading.done,
+      data: {
+        remote: true,
+        url: url_for(action: :toggle, id: @loading.id),
+        method: "POST"
+      } %> Complete</p>
       <div>
     </div>
   </div>
 </div>
+
+
+<p> <strong>Give the driver the materials to load/unload</strong>
+<%= simple_form_for([ @loading, @loadingmaterial ]) do |f| %>
+  <%= f.input :material_id, as: :select, collection:  Material.all, prompt: "Select Material" %>
+  <%= f.input :quantity, placeholder: 'Enter the number of pallet' %>
+  <%= f.submit "Add this instruction to the Loading", class: "btn btn-gradient" %>
+<% end %>
+
 
 <div id="map"
     style="width:100%"
