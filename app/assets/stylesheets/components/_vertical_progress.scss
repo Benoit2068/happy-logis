@@ -1,5 +1,21 @@
 *, *:after, *:before { margin:0; padding:0; }
 
+.quantity-info {
+  display: flex;
+}
+
+.quantity-info .progress {
+  width: 160px;
+  height: 12px;
+  background-color: white;
+  border-radius: 8px;
+  border: 1px solid grey;
+    .progress-bar {
+      background-color: #6A7fdb;
+    }
+}
+
+
 #progress {
     display: flex;
     flex-direction: column;
@@ -22,6 +38,7 @@
     line-height: 1.4;
     opacity: .7;
     margin-bottom: 0;
+    margin-right: 24px;
 }
 
 
