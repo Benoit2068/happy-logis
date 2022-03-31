@@ -30,14 +30,7 @@
               <div class="quantity-info">
                 <p>
                   <%= loading.address.split(', ').last %>
-                  <% sum = 0  %>
-                  <% Loadingmaterial.where("loading_id <= #{loading.id}").unscope(where: @delivery).each do |lm| %>
-                    <% sum = sum + lm.quantity %>
-                  <% end %>
-
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: <%= (sum.to_f/33*100).round %>%;" aria-valuenow="<%= sum %>" aria-valuemin="0" aria-valuemax="33"><%= sum %> paletts</div>
-                  </div>
+                  <%= render partial: "load-progress", locals: {loading: loading} %>
                 </p>
               </div>
             </div>
@@ -53,15 +46,12 @@
                   <%= icon('fa-solid', 'play') %>
                 <% end %>
               </h3>
-              <p>
-                <%= loading.address.split(', ').last %>
-                <% sum = 0  %>
-                <% Loadingmaterial.where("loading_id <= #{loading.id}").unscope(where: @delivery).each do |lm| %>
-                  <% sum = sum + lm.quantity %>
-                <% end %>
-                <%= sum %>
-                <progress id="file" max="33" value="<%= sum %>"></progress>
-              </p>
+              <div class="quantity-info">
+                <p>
+                  <%= loading.address.split(', ').last %>
+                  <%= render partial: "load-progress", locals: {loading: loading} %>
+                </p>
+              </div>
             </div>
           </li>
         <% end %>
@@ -76,15 +66,12 @@
                 <%= icon('fa-solid', 'play') %>
               <% end %>
             </h3>
+            <div class="quantity-info">
               <p>
                 <%= loading.address.split(', ').last %>
-                <% sum = 0  %>
-                <% Loadingmaterial.where("loading_id <= #{loading.id}").unscope(where: @delivery).each do |lm| %>
-                  <% sum = sum + lm.quantity %>
-                <% end %>
-                <%= sum %>
-                <progress id="file" max="33" value="<%= sum %>"></progress>
+                <%= render partial: "load-progress", locals: {loading: loading} %>
               </p>
+            </div>
           </div>
         </li>
       <% end %>
@@ -102,15 +89,12 @@
                 <%= icon('fa-solid', 'play') %>
               <% end %>
             </h3>
+            <div class="quantity-info">
               <p>
                 <%= loading.address.split(', ').last %>
-                <% sum = 0  %>
-                <% Loadingmaterial.where("loading_id <= #{loading.id}").unscope(where: @delivery).each do |lm| %>
-                  <% sum = sum + lm.quantity %>
-                <% end %>
-                <%= sum %>
-                <progress id="file" max="33" value="<%= sum %>"></progress>
+                <%= render partial: "load-progress", locals: {loading: loading} %>
               </p>
+            </div>
           </div>
         </li>
         <% else %>
@@ -124,15 +108,12 @@
                   <%= icon('fa-solid', 'play') %>
                 <% end %>
               </h3>
-              <p>
-                <%= loading.address.split(', ').last %>
-                <% sum = 0  %>
-                <% Loadingmaterial.where("loading_id <= #{loading.id}").unscope(where: @delivery).each do |lm| %>
-                  <% sum = sum + lm.quantity %>
-                <% end %>
-                <%= sum %>
-                <progress id="file" max="33" value="<%= sum %>"></progress>
-              </p>
+              <div class="quantity-info">
+                <p>
+                  <%= loading.address.split(', ').last %>
+                  <%= render partial: "load-progress", locals: {loading: loading} %>
+                </p>
+              </div>
             </div>
           </li>
         <% end %>
@@ -147,15 +128,12 @@
                 <%= icon('fa-solid', 'play') %>
               <% end %>
             </h3>
+            <div class="quantity-info">
               <p>
                 <%= loading.address.split(', ').last %>
-                <% sum = 0  %>
-                <% Loadingmaterial.where("loading_id <= #{loading.id}").unscope(where: @delivery).each do |lm| %>
-                  <% sum = sum + lm.quantity %>
-                <% end %>
-                <%= sum %>
-                <progress id="file" max="33" value="<%= sum %>"></progress>
+                <%= render partial: "load-progress", locals: {loading: loading} %>
               </p>
+            </div>
           </div>
         </li>
       <% end %>
@@ -170,15 +148,12 @@
                 <%= icon('fa-solid', 'play') %>
               <% end %>
             </h3>
+            <div class="quantity-info">
               <p>
                 <%= loading.address.split(', ').last %>
-                <% sum = 0  %>
-                <% Loadingmaterial.where("loading_id <= #{loading.id}").unscope(where: @delivery).each do |lm| %>
-                  <% sum = sum + lm.quantity %>
-                <% end %>
-                <%= sum %>
-                <progress id="file" max="33" value="<%= sum %>"></progress>
+                <%= render partial: "load-progress", locals: {loading: loading} %>
               </p>
+            </div>
           </div>
         </li>
       <% else %>
@@ -191,15 +166,12 @@
                 <%= icon('fa-solid', 'play') %>
               <% end %>
             </h3>
+            <div class="quantity-info">
               <p>
                 <%= loading.address.split(', ').last %>
-                <% sum = 0  %>
-                <% Loadingmaterial.where("loading_id <= #{loading.id}").unscope(where: @delivery).each do |lm| %>
-                  <% sum = sum + lm.quantity %>
-                <% end %>
-                <%= sum %>
-                <progress id="file" max="33" value="<%= sum %>"></progress>
+                <%= render partial: "load-progress", locals: {loading: loading} %>
               </p>
+            </div>
           </div>
         </li>
       <% end %>
@@ -217,4 +189,3 @@
         data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
   <% end %>
-</div>

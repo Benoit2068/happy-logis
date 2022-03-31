@@ -2,11 +2,17 @@
 
 .quantity-info {
   display: flex;
-  justify-content: space-around;
 }
 
 .quantity-info .progress {
-  flex-grow: 1;
+  width: 160px;
+  height: 12px;
+  background-color: white;
+  border-radius: 8px;
+  border: 1px solid grey;
+    .progress-bar {
+      background-color: #FFCAFA;
+    }
 }
 
 
@@ -32,6 +38,7 @@
     line-height: 1.4;
     opacity: .7;
     margin-bottom: 0;
+    margin-right: 24px;
 }
 
 
