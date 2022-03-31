@@ -27,7 +27,12 @@
                   <%= icon('fa-solid', 'play') %>
                 <% end %>
               </h3>
-              <p><%= loading.address.split(', ').last %></p>
+              <div class="quantity-info">
+                <p>
+                  <%= loading.address.split(', ').last %>
+                  <%= render partial: "load-progress", locals: {loading: loading} %>
+                </p>
+              </div>
             </div>
           </li>
         <% else %>
@@ -41,7 +46,12 @@
                   <%= icon('fa-solid', 'play') %>
                 <% end %>
               </h3>
-              <p><%= loading.address.split(', ').last %></p>
+              <div class="quantity-info">
+                <p>
+                  <%= loading.address.split(', ').last %>
+                  <%= render partial: "load-progress", locals: {loading: loading} %>
+                </p>
+              </div>
             </div>
           </li>
         <% end %>
@@ -56,7 +66,12 @@
                 <%= icon('fa-solid', 'play') %>
               <% end %>
             </h3>
-            <p><%= loading.address.split(', ').last %></p>
+            <div class="quantity-info">
+              <p>
+                <%= loading.address.split(', ').last %>
+                <%= render partial: "load-progress", locals: {loading: loading} %>
+              </p>
+            </div>
           </div>
         </li>
       <% end %>
@@ -74,7 +89,12 @@
                 <%= icon('fa-solid', 'play') %>
               <% end %>
             </h3>
-            <p><%= loading.address.split(', ').last %></p>
+            <div class="quantity-info">
+              <p>
+                <%= loading.address.split(', ').last %>
+                <%= render partial: "load-progress", locals: {loading: loading} %>
+              </p>
+            </div>
           </div>
         </li>
         <% else %>
@@ -88,7 +108,12 @@
                   <%= icon('fa-solid', 'play') %>
                 <% end %>
               </h3>
-              <p><%= loading.address.split(', ').last %></p>
+              <div class="quantity-info">
+                <p>
+                  <%= loading.address.split(', ').last %>
+                  <%= render partial: "load-progress", locals: {loading: loading} %>
+                </p>
+              </div>
             </div>
           </li>
         <% end %>
@@ -103,7 +128,12 @@
                 <%= icon('fa-solid', 'play') %>
               <% end %>
             </h3>
-            <p><%= loading.address.split(', ').last %></p>
+            <div class="quantity-info">
+              <p>
+                <%= loading.address.split(', ').last %>
+                <%= render partial: "load-progress", locals: {loading: loading} %>
+              </p>
+            </div>
           </div>
         </li>
       <% end %>
@@ -118,7 +148,12 @@
                 <%= icon('fa-solid', 'play') %>
               <% end %>
             </h3>
-            <p><%= loading.address.split(', ').last %></p>
+            <div class="quantity-info">
+              <p>
+                <%= loading.address.split(', ').last %>
+                <%= render partial: "load-progress", locals: {loading: loading} %>
+              </p>
+            </div>
           </div>
         </li>
       <% else %>
@@ -131,17 +166,21 @@
                 <%= icon('fa-solid', 'play') %>
               <% end %>
             </h3>
-            <p><%= loading.address.split(', ').last %></p>
+            <div class="quantity-info">
+              <p>
+                <%= loading.address.split(', ').last %>
+                <%= render partial: "load-progress", locals: {loading: loading} %>
+              </p>
+            </div>
           </div>
         </li>
       <% end %>
     <% end %>
   <% end %>
-<% if current_user.function == "manager" %>
-  <%= link_to "Add a Loading", new_delivery_loading_path(@delivery), class: "btn btn-gradient" %>
-<% end %>
+  <% if current_user.function == "manager" %>
+    <%= link_to "Add a Loading", new_delivery_loading_path(@delivery), class: "btn btn-gradient" %>
+  <% end %>
 </ul>
-
 
   <% if Loading.where(delivery_id: @delivery).presence %>
     <div id="map"
@@ -151,5 +190,3 @@
 
     </div>
   <% end %>
-
-</div>
