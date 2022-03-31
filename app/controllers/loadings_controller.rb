@@ -9,7 +9,17 @@ class LoadingsController < ApplicationController
   def show
     @markers = [{
       lat: @loading.latitude,
-      lng: @loading.longitude
+      lng: @loading.longitude,
+      name: @loading.name,
+      address: @loading.address,
+      id: @loading.id,
+      done: @loading.done,
+      elements: @loading.loadingmaterials.each do |loadingmaterial| [{
+        quantity: loadingmaterial.quantity,
+        material: loadingmaterial.material.name,
+
+      }]
+    end
     }]
     @loadingmaterial = Loadingmaterial.new
   end
