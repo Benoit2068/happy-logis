@@ -2,11 +2,11 @@
 <div class="head_deliveries">
   <% if current_user.function == "manager" %>
     <%= link_to deliveries_path do %>
-      <%= icon('fa-solid', 'caret-left') %>
+      <%= icon('fa-solid', 'angles-left') %>
     <% end %>
   <% else %>
     <%= link_to my_deliveries_path do %>
-      <%= icon('fa-solid', 'caret-left') %>
+      <%= icon('fa-solid', 'angles-left') %>
     <% end %>
   <% end %>
   <h1><%= @delivery.name %></h1>
@@ -27,7 +27,12 @@
                   <%= icon('fa-solid', 'play') %>
                 <% end %>
               </h3>
-              <p><%= loading.address.split(', ').last %></p>
+              <div class="quantity-info">
+                <p>
+                  <%= loading.address.split(', ').last %>
+                  <%= render partial: "load-progress", locals: {loading: loading} %>
+                </p>
+              </div>
             </div>
           </li>
         <% else %>
@@ -41,7 +46,12 @@
                   <%= icon('fa-solid', 'play') %>
                 <% end %>
               </h3>
-              <p><%= loading.address.split(', ').last %></p>
+              <div class="quantity-info">
+                <p>
+                  <%= loading.address.split(', ').last %>
+                  <%= render partial: "load-progress", locals: {loading: loading} %>
+                </p>
+              </div>
             </div>
           </li>
         <% end %>
@@ -56,7 +66,12 @@
                 <%= icon('fa-solid', 'play') %>
               <% end %>
             </h3>
-            <p><%= loading.address.split(', ').last %></p>
+            <div class="quantity-info">
+              <p>
+                <%= loading.address.split(', ').last %>
+                <%= render partial: "load-progress", locals: {loading: loading} %>
+              </p>
+            </div>
           </div>
         </li>
       <% end %>
@@ -74,7 +89,12 @@
                 <%= icon('fa-solid', 'play') %>
               <% end %>
             </h3>
-            <p><%= loading.address.split(', ').last %></p>
+            <div class="quantity-info">
+              <p>
+                <%= loading.address.split(', ').last %>
+                <%= render partial: "load-progress", locals: {loading: loading} %>
+              </p>
+            </div>
           </div>
         </li>
         <% else %>
@@ -88,7 +108,12 @@
                   <%= icon('fa-solid', 'play') %>
                 <% end %>
               </h3>
-              <p><%= loading.address.split(', ').last %></p>
+              <div class="quantity-info">
+                <p>
+                  <%= loading.address.split(', ').last %>
+                  <%= render partial: "load-progress", locals: {loading: loading} %>
+                </p>
+              </div>
             </div>
           </li>
         <% end %>
@@ -103,7 +128,12 @@
                 <%= icon('fa-solid', 'play') %>
               <% end %>
             </h3>
-            <p><%= loading.address.split(', ').last %></p>
+            <div class="quantity-info">
+              <p>
+                <%= loading.address.split(', ').last %>
+                <%= render partial: "load-progress", locals: {loading: loading} %>
+              </p>
+            </div>
           </div>
         </li>
       <% end %>
@@ -118,7 +148,12 @@
                 <%= icon('fa-solid', 'play') %>
               <% end %>
             </h3>
-            <p><%= loading.address.split(', ').last %></p>
+            <div class="quantity-info">
+              <p>
+                <%= loading.address.split(', ').last %>
+                <%= render partial: "load-progress", locals: {loading: loading} %>
+              </p>
+            </div>
           </div>
         </li>
       <% else %>
@@ -131,12 +166,18 @@
                 <%= icon('fa-solid', 'play') %>
               <% end %>
             </h3>
-            <p><%= loading.address.split(', ').last %></p>
+            <div class="quantity-info">
+              <p>
+                <%= loading.address.split(', ').last %>
+                <%= render partial: "load-progress", locals: {loading: loading} %>
+              </p>
+            </div>
           </div>
         </li>
       <% end %>
     <% end %>
   <% end %>
+<<<<<<< HEAD
 <% if current_user.function == "manager" %>
   <%= link_to "Add a Loading", new_delivery_loading_path(@delivery), class: "btn btn-gradient" %>
 <% end %>
@@ -144,8 +185,12 @@
   <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
 <progress id="file" max="100" value="70"> 70% </progress>
+=======
+  <% if current_user.function == "manager" %>
+    <%= link_to "Add a Loading", new_delivery_loading_path(@delivery), class: "btn btn-gradient" %>
+  <% end %>
+>>>>>>> master
 </ul>
-
 
   <% if Loading.where(delivery_id: @delivery).presence %>
     <div id="map"
@@ -154,4 +199,7 @@
         data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
   <% end %>
+<<<<<<< HEAD
 </div>
+=======
+>>>>>>> master
