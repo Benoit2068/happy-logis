@@ -7,8 +7,13 @@
 
 <div class="container py-4">
   <div class="card-delivery">
+
+
     <div class="card-delivery-infos">
-      <p> <strong>Location:</strong> <%= @loading.address %></p>
+      <p><%= link_to delivery_path(Delivery.find(@loading.delivery_id)) do %>
+            <%= icon('fa-solid', 'backward-step')  %>
+          <% end %>
+           <strong>Location:</strong> <%= @loading.address %></p>
           <% @loading.loadingmaterials.each do |loadingmaterial| %>
             <p><%if loadingmaterial.quantity > 0 %>
               <%= icon('fa-solid', 'circle-arrow-up') %>
@@ -24,18 +29,24 @@
         url: url_for(action: :toggle, id: @loading.id),
         method: "POST"
       } %> Complete</p>
+
       <div>
+
     </div>
   </div>
+
 </div>
 
+  <% if current_user.function == "manager" %>
+    <p> <strong>Give the driver the materials to load/unload</strong>
+      <%= simple_form_for([ @loading, @loadingmaterial ]) do |f| %>
+      <%= f.input :material_id, as: :select, collection:  Material.all, prompt: "Select Material" %>
+      <%= f.input :quantity, placeholder: 'Enter the number of pallet' %>
+      <%= f.submit "Add this instruction to the Loading", class: "btn btn-gradient" %>
+      <% end %>
+  <% end %>
 
-<p> <strong>Give the driver the materials to load/unload</strong>
-<%= simple_form_for([ @loading, @loadingmaterial ]) do |f| %>
-  <%= f.input :material_id, as: :select, collection:  Material.all, prompt: "Select Material" %>
-  <%= f.input :quantity, placeholder: 'Enter the number of pallet' %>
-  <%= f.submit "Add this instruction to the Loading", class: "btn btn-gradient" %>
-<% end %>
+
 
 
 <div id="map"
