@@ -14,12 +14,12 @@ class LoadingsController < ApplicationController
       address: @loading.address,
       id: @loading.id,
       done: @loading.done,
-      elements: @loading.loadingmaterials.each do |loadingmaterial| [{
+      elements: @loading.loadingmaterials.map do |loadingmaterial|
+{
         quantity: loadingmaterial.quantity,
-        material: loadingmaterial.material.name,
-
-      }]
-    end
+        material: loadingmaterial.material.name
+        }
+      end
     }]
     @loadingmaterial = Loadingmaterial.new
   end
