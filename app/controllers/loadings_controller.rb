@@ -10,16 +10,7 @@ class LoadingsController < ApplicationController
     @markers = [{
       lat: @loading.latitude,
       lng: @loading.longitude,
-      name: @loading.name,
-      address: @loading.address,
-      id: @loading.id,
-      done: @loading.done,
-      elements: @loading.loadingmaterials.map do |loadingmaterial|
-{
-        quantity: loadingmaterial.quantity,
-        material: loadingmaterial.material.name
-        }
-      end
+      info_marker: render_to_string(partial: "info_marker", locals: { loading: @loading }),
     }]
     @loadingmaterial = Loadingmaterial.new
   end

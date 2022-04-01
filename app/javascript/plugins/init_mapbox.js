@@ -1,6 +1,7 @@
 
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import LoaderOptionsPlugin from 'webpack/lib/LoaderOptionsPlugin';
 
 
 const initMapbox = () => {
@@ -13,24 +14,13 @@ const initMapbox = () => {
   };
 
   const addMarkers = (map, markers) => {
+    map.addControl(new mapboxgl.FullscreenControl());
     markers.forEach((marker) => {
+      const popup = new mapboxgl.Popup().setHTML(marker.info_marker);
+
       new mapboxgl.Marker()
         .setLngLat([marker.lng, marker.lat])
-        .setPopup(
-          new mapboxgl.Popup({ offset: 25 }) // add popups
-            .setHTML(
-              // `<h3>${marker.name}</h3>
-              // <p>${marker.address}</p>`
-              marker.elements.forEach((element) => {
-                `<p>${element.quantity}</p>`;
-              })
-              )
-            // .setHTML(
-            //   marker.elements.forEach((element) => {
-            //     `<p>${element}</p>`
-            //   })
-            // )
-        )
+        .setPopup(popup)
         .addTo(map);
       });
     };
