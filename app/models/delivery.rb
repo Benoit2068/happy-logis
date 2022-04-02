@@ -4,4 +4,5 @@ class Delivery < ApplicationRecord
 
   validates :startdate, presence: true
   validates :capacity, presence: true
+  validates :finished, acceptance: false
 end

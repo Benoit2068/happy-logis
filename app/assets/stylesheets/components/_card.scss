@@ -12,6 +12,15 @@
   border-radius: 10px;
 }
 
+.card-delivery-button {
+  display: flex;
+  flex-direction: column;
+    h3 {
+      text-align: center;
+
+    }
+}
+
 .card-delivery img {
   height: 100%;
   width: 120px;
