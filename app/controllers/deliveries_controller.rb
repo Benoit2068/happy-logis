@@ -17,7 +17,6 @@ class DeliveriesController < ApplicationController
         lat: loading.latitude,
         lng: loading.longitude,
         info_marker: render_to_string(partial: "info_marker_deliveries", locals: { loading: loading }),
-
       }
     end
 
