@@ -1,0 +1,20 @@
+<div class="card-delivery-infos">
+  <p><%= loading.address.split(', ').first %></p>
+  <p><%= loading.address.split(', ').last %></p>
+  <% @loading.loadingmaterials.each do |loadingmaterial| %>
+    <p><%if loadingmaterial.quantity > 0 %>
+      <%= icon('fa-solid', 'circle-arrow-up') %>
+      <strong><%= loadingmaterial.quantity %></strong> pallets of <strong><%= loadingmaterial.material.name %></strong></p>
+    <%else %>
+      <%= icon('fa-solid', 'circle-arrow-down') %>
+      <strong><%=  - loadingmaterial.quantity %></strong> pallets of <strong><%= loadingmaterial.material.name %></strong></p>
+    <%end %>
+  <% end %>
+  <p><%= check_box_tag 'done', @loading.id, @loading.done,
+    data: {
+      remote: true,
+      url: url_for(action: :toggle, id: @loading.id),
+      method: "POST"
+    } %> Complete
+  </p>
+</div>

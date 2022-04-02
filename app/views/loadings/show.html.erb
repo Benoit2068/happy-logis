@@ -36,10 +36,14 @@
   <%= f.input :quantity, placeholder: 'Enter the number of pallet' %>
   <%= f.submit "Add this instruction to the Loading", class: "btn btn-gradient" %>
 <% end %>
+<%# end %>
+
+<%= link_to 'Waze', "https://waze.com/ul?q=66%20Acacia%20Avenue&ll=#{@loading.latitude},#{@loading.longitude}&navigate=yes", class: "btn btn-gradient"  %>
 
 
 <div id="map"
     style="width:100%"
     data-markers="<%= @markers.to_json %>"
     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-</div>
+
+  </div>
