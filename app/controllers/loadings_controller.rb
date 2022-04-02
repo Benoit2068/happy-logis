@@ -2,13 +2,15 @@ class LoadingsController < ApplicationController
   before_action :set_loading, only: [:show, :edit, :update, :destroy, :toggle]
 
   def index
-     @loadings = Loading.all
+  @loadings = Loading.all
+
   end
 
   def show
     @markers = [{
       lat: @loading.latitude,
-      lng: @loading.longitude
+      lng: @loading.longitude,
+      info_marker: render_to_string(partial: "info_marker", locals: { loading: @loading }),
     }]
     @loadingmaterial = Loadingmaterial.new
   end
