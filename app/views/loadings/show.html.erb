@@ -38,13 +38,15 @@
 </div>
 
   <% if current_user.function == "manager" %>
-    <p> <strong>Give the driver the materials to load/unload</strong>
-      <%= simple_form_for([ @loading, @loadingmaterial ]) do |f| %>
-      <%= f.input :material_id, as: :select, collection:  Material.all, prompt: "Select Material" %>
-      <%= f.input :quantity, placeholder: 'Enter the number of pallet' %>
-      <%= f.submit "Add this instruction to the Loading", class: "btn btn-gradient" %>
-      <% end %>
-  <% end %>
+<p> <strong>Give the driver the materials to load/unload</strong>
+<%= simple_form_for([ @loading, @loadingmaterial ]) do |f| %>
+  <%= f.input :material_id, as: :select, collection:  Material.all, prompt: "Select Material" %>
+  <%= f.input :quantity, placeholder: 'Enter the number of pallet' %>
+  <%= f.submit "Add this instruction to the Loading", class: "btn btn-gradient" %>
+<% end %>
+<%# end %>
+
+<%= link_to 'Waze', "https://waze.com/ul?q=66%20Acacia%20Avenue&ll=#{@loading.latitude},#{@loading.longitude}&navigate=yes", class: "btn btn-gradient"  %>
 
 
 
