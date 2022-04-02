@@ -3,14 +3,21 @@
 </div>
 <div class="container py-4">
       <div class="cards">
-        <% @deliveries.each do |delivery| %>
+        <% @deliveries.order('startdate asc').each do |delivery| %>
             <div class="card-delivery">
               <div class="card-delivery-infos">
                 <h2><%= delivery.name %></h2>
                 <p><%= delivery.startdate.strftime("%d/%m/%Y") %></p>
-                <p><%= delivery.user.name %></p>
+                <% if delivery.finished? %>
+                <p><%= icon('fa-solid', 'circle-check') %></p>
+                <% else %>
+                <p><%= icon('fa-solid', 'circle-xmark') %></p>
+                <% end %>
               </div>
+              <div class="card-delivery-button">
+                <h3><%= icon('fa-solid', 'user') %><%=delivery.user.name %></h3>
                 <%= link_to "Delivery details", delivery_path(delivery), class: "btn btn-gradient" %>
+              </div>
             </div>
         <% end %>
       <% if current_user.function == "manager" %>
