@@ -13,5 +13,9 @@
                 <%= link_to "Delivery details", delivery_path(delivery), class: "btn btn-gradient" %>
             </div>
         <% end %>
+      <% if current_user.function == "manager" %>
+        <%= link_to "New Delivery", new_delivery_path(@delivery), class: "btn btn-gradient" %>
+      <% end %>
+
   </div>
 </div>

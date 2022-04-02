@@ -29,7 +29,7 @@ class DeliveriesController < ApplicationController
   def create
     @delivery = Delivery.new(delivery_params)
     @delivery.save
-    redirect_to delivery_path(@delivery)
+    redirect_to deliveries_path
   end
 
   def edit
@@ -37,7 +37,7 @@ class DeliveriesController < ApplicationController
 
   def update
     @delivery.update(delivery_params)
-    redirect_to delivery_path(@delivery)
+    redirect_to deliveries_path
   end
 
   def destroy
@@ -48,7 +48,7 @@ class DeliveriesController < ApplicationController
   private
 
   def delivery_params
-    params.require(:delivery).permit(:name, :startdate, :capacity)
+    params.require(:delivery).permit(:name, :startdate, :capacity, :user_id)
   end
 
   def set_delivery
