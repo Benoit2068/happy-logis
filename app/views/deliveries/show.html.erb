@@ -13,15 +13,15 @@
 </div>
 
 <ul id="progress">
-  <% Loading.where(delivery_id: @delivery).each_with_index do |loading, index| %>
+  <% Loading.where(delivery_id: @delivery).order('id asc').each_with_index do |loading, index| %>
     <% if index == 0 %>
       <% if loading.done? %>
-        <% if Loading.where(delivery_id: @delivery)[index+1].done? %>
+        <% if Loading.where(delivery_id: @delivery).order('id asc')[index+1].done? %>
           <li>
             <div class="node blue"></div>
             <div class="progress-info">
             <div class="divider blue"></div>
-              <h3><%= loading.name %></h3>
+            <h3><%= loading.name %></h3>
               <div class="quantity-info">
                 <p><%= loading.address.split(', ').last %></p>
                 <%= render partial: "load-progress", locals: {loading: loading} %>
@@ -56,7 +56,7 @@
       <% end %>
     <% elsif index < Loading.where(delivery_id: @delivery).count-1 %>
       <% if loading.done? %>
-        <% if Loading.where(delivery_id: @delivery)[index+1].done? %>
+        <% if Loading.where(delivery_id: @delivery).order('id asc')[index+1].done? %>
         <li><div class="divider blue"></div></li>
         <li>
           <div class="node blue"></div>
