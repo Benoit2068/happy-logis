@@ -5,12 +5,18 @@
   <h1><%= @delivery.name %></h1>
 </div>
 
-      <div class="card-loading rounded p-3 shadow">
+<div class="container py-4">
+  <div class="cards">
+    <div class="card-delivery">
+      <div class="card-delivery-infos">
         <h2>New Loading</h2>
         <%= simple_form_for [@delivery, @loading] do |f| %>
-          <%= f.input :name , as: :string %>
-          <%= f.input :address , as: :string %>
-          <%= f.input :date , label: 'Date'%>
-          <%= f.submit "Create Loading", class: "btn btn-gradient" %>
+          <%= f.input :name, as: :string %>
+          <%= f.input :address, as: :string %>
+          <%= f.input :date, order: [:day, :month, :year], label: 'Date'%>
+          <%= f.submit "Create Loading", class: "btn btn-gradient", style: "margin-top: 16px"  %>
         <% end %>
       </div>
+    </div>
+  </div>
+</div>
