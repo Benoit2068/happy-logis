@@ -10,26 +10,33 @@
 
 
     <div class="card-delivery-infos">
-      <p><%= link_to delivery_path(Delivery.find(@loading.delivery_id)) do %>
-            <%= icon('fa-solid', 'backward-step')  %>
+      <p><%= icon('fa-solid', 'location-dot') %> <%= @loading.address %>
+        <% if current_user.function == "driver" %>
+          <%= link_to "https://waze.com/ul?q=66%20Acacia%20Avenue&ll=#{@loading.latitude},#{@loading.longitude}&navigate=yes" do %>
+            <%= icon('fa-brands', 'waze') %>
           <% end %>
-           <strong>Location:</strong> <%= @loading.address %></p>
-          <% @loading.loadingmaterials.each do |loadingmaterial| %>
-            <p><%if loadingmaterial.quantity > 0 %>
+        <% end %>
+      </p>
+
+      <% @loading.loadingmaterials.each do |loadingmaterial| %>
+        <p><%if loadingmaterial.quantity > 0 %>
               <%= icon('fa-solid', 'circle-arrow-up') %>
               <strong><%= loadingmaterial.quantity %></strong> pallets of <strong><%= loadingmaterial.material.name %></strong></p>
             <%else %>
               <%= icon('fa-solid', 'circle-arrow-down') %>
               <strong><%=  - loadingmaterial.quantity %></strong> pallets of <strong><%= loadingmaterial.material.name %></strong></p>
             <%end %>
-          <% end %>
-      <p><%= check_box_tag 'done', @loading.id, @loading.done,
+      <% end %>
+
+<div class="custom-control custom-switch" >
+  <%= check_box_tag 'customSwitch1', @loading.id, @loading.done, class:"custom-control-input",
       data: {
         remote: true,
         url: url_for(action: :toggle, id: @loading.id),
         method: "POST"
-      } %> Complete</p>
-
+      } %>
+  <label class="custom-control-label" for="customSwitch1">Complete</label>
+</div>
       <div>
 
     </div>
@@ -37,6 +44,7 @@
 
 </div>
 
+<div style="margin: 50px 0" >
 <% if current_user.function == "manager" %>
   <p> <strong>Give the driver the materials to load/unload</strong>
   <%= simple_form_for([ @loading, @loadingmaterial ]) do |f| %>
@@ -45,9 +53,8 @@
     <%= f.submit "Add this instruction to the Loading", class: "btn btn-gradient" %>
   <% end %>
 <% end %>
+</div>
 
-
-<%= link_to 'Waze', "https://waze.com/ul?q=66%20Acacia%20Avenue&ll=#{@loading.latitude},#{@loading.longitude}&navigate=yes", class: "btn btn-gradient"  %>
 
 
 
