@@ -7,53 +7,61 @@
 
 <div class="container py-4">
   <div class="card-delivery">
-
-
     <div class="card-delivery-infos">
-      <p><%= icon('fa-solid', 'location-dot') %> <%= @loading.address %>
+        <p>
+        <%= icon('fa-solid', 'location-dot') %> <%= @loading.address %>
         <% if current_user.function == "driver" %>
-          <%= link_to "https://waze.com/ul?q=66%20Acacia%20Avenue&ll=#{@loading.latitude},#{@loading.longitude}&navigate=yes" do %>
-            <%= icon('fa-brands', 'waze') %>
-          <% end %>
+            <%= link_to "https://waze.com/ul?q=66%20Acacia%20Avenue&ll=#{@loading.latitude},#{@loading.longitude}&navigate=yes" do %>
+              <%= icon('fa-brands', 'waze') %>
+            <% end %>
         <% end %>
-      </p>
-
-      <% @loading.loadingmaterials.each do |loadingmaterial| %>
-        <p><%if loadingmaterial.quantity > 0 %>
+        </p>
+        <% @loading.loadingmaterials.each do |loadingmaterial| %>
+          <% if loadingmaterial.quantity > 0 %>
+            <p>
               <%= icon('fa-solid', 'circle-arrow-up') %>
-              <strong><%= loadingmaterial.quantity %></strong> pallets of <strong><%= loadingmaterial.material.name %></strong></p>
-            <%else %>
+              <strong><%= loadingmaterial.quantity %></strong> pallets of <strong><%= loadingmaterial.material.name %></strong>
+            </p>
+          <%else %>
+            <p>
               <%= icon('fa-solid', 'circle-arrow-down') %>
               <strong><%=  - loadingmaterial.quantity %></strong> pallets of <strong><%= loadingmaterial.material.name %></strong></p>
-            <%end %>
-      <% end %>
-
-<div class="custom-control custom-switch" >
-  <%= check_box_tag 'customSwitch1', @loading.id, @loading.done, class:"custom-control-input",
-      data: {
-        remote: true,
-        url: url_for(action: :toggle, id: @loading.id),
-        method: "POST"
-      } %>
-  <label class="custom-control-label" for="customSwitch1">Complete</label>
-</div>
+          <%end %>
+        <% end %>
+        <div class="custom-control custom-switch" >
+          <%= check_box_tag 'customSwitch1', @loading.id, @loading.done, class:"custom-control-input",
+              data: {
+                remote: true,
+                url: url_for(action: :toggle, id: @loading.id),
+                method: "POST"
+              } %>
+          <label class="custom-control-label" for="customSwitch1">Complete</label>
+        </div>
       <div>
-
     </div>
   </div>
-
+</div>
+<div class="cards"style="margin: 20px 0">
+  <div class="card-delivery">
+    <div class="card-delivery-infos">
+      <% if current_user.function == "manager" %>
+        <%= list = {} %>
+        <% Loadingmaterial.where("loading_id < #{@loading.id}").unscope(where: @delivery).each do |lm| %>
+        <% material = lm.material.name.parameterize.underscore.to_sym %>
+        <% list.store(material, lm.quantity) %>
+        <% end %>
+        <% raise %>
+        <p> <strong>Give the driver the materials to load/unload</strong>
+        <%= simple_form_for([ @loading, @loadingmaterial ]) do |f| %>
+          <%= f.input :material_id, as: :select, collection:  Material.all, prompt: "Select Material" %>
+          <%= f.input :quantity, placeholder: 'Enter the number of pallet' %>
+          <%= f.submit "Add this instruction to the Loading", class: "btn btn-gradient" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>
 
-<div style="margin: 50px 0" >
-<% if current_user.function == "manager" %>
-  <p> <strong>Give the driver the materials to load/unload</strong>
-  <%= simple_form_for([ @loading, @loadingmaterial ]) do |f| %>
-    <%= f.input :material_id, as: :select, collection:  Material.all, prompt: "Select Material" %>
-    <%= f.input :quantity, placeholder: 'Enter the number of pallet' %>
-    <%= f.submit "Add this instruction to the Loading", class: "btn btn-gradient" %>
-  <% end %>
-<% end %>
-</div>
 
 
 
