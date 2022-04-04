@@ -45,10 +45,10 @@
   <div class="card-delivery">
     <div class="card-delivery-infos">
       <% if current_user.function == "manager" %>
-        <%= list = {} %>
-        <% Loadingmaterial.where("loading_id < #{@loading.id}").unscope(where: @delivery).each do |lm| %>
+        <%= list = [] %>
+        <% Loadingmaterial.where("loading_id < #{@loading.id}").and(Loadingmaterial.where(loading: Loading.where(delivery_id: @loading.delivery))).each do |lm| %>
         <% material = lm.material.name.parameterize.underscore.to_sym %>
-        <% list.store(material, lm.quantity) %>
+        <% list << {"#{material}" => lm.quantity} %>
         <% end %>
         <% raise %>
         <p> <strong>Give the driver the materials to load/unload</strong>
