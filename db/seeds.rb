@@ -28,7 +28,7 @@ delivery_zurich = Delivery.new({ name: "Zurich", startdate: Date.today - 1, capa
 delivery_zurich.user = john
 delivery_zurich.save
 
-delivery_lausanne = Delivery.new({ name: "Lausanne", startdate: Date.today + 1, capacity: 33, finished: false})
+delivery_lausanne = Delivery.new({ name: "Lausanne", startdate: Date.today - 1, capacity: 33, finished: true})
 delivery_lausanne.user = manu
 delivery_lausanne.save
 
@@ -37,11 +37,15 @@ delivery_geneve = Delivery.new({ name: "Genève", startdate: Date.today, capacit
 delivery_geneve.user = manu
 delivery_geneve.save
 
-delivery_sierre = Delivery.new({ name: "Sierre", startdate: Date.today + 2, capacity: 33, finished: false})
+delivery_sierre = Delivery.new({ name: "Sierre", startdate: Date.today + 1, capacity: 33, finished: false})
 delivery_sierre.user = manu
 delivery_sierre.save
 
-delivery_sierre2 = Delivery.new({ name: "Sierre 2", startdate: Date.today, capacity: 33, finished: false})
+delivery_geneve_2 = Delivery.new({ name: "Genève", startdate: Date.today + 2, capacity: 33, finished: false})
+delivery_geneve_2.user = manu
+delivery_geneve_2.save
+
+delivery_sierre2 = Delivery.new({ name: "Sierre", startdate: Date.today + 2, capacity: 33, finished: false})
 delivery_sierre2.user = john
 delivery_sierre2.save
 
@@ -51,6 +55,7 @@ puts "delivery #{delivery_lausanne.name} create"
 puts "delivery #{delivery_geneve.name} create"
 puts "delivery #{delivery_sierre.name} create"
 puts "delivery #{delivery_sierre2.name} create"
+puts "delivery #{delivery_geneve_2.name} create"
 
 
 load_1 = Loading.create({date: Date.today - 1, name: "Moulin de la Pallanterie SA", address: "Rte de Thonon 154, 1222 Vésenaz", done: true, delivery_id: delivery_zurich.id})
@@ -76,7 +81,7 @@ wheat = Material.create({ name: 'Wheat' })
 egg = Material.create({ name: 'Egg' })
 beer = Material.create({ name: 'Beer' })
 milk = Material.create({ name: 'Milk' })
-wood = Material.create({ name: 'Wood' })
+wine = Material.create({ name: 'Red Wine' })
 fruit_juice = Material.create({ name: 'Fruit juice' })
 rhum = Material.create({ name: 'Rhum' })
 coca_cola = Material.create({ name: 'Coca Cola' })
@@ -87,7 +92,7 @@ puts "material #{wheat.name} created"
 puts "material #{egg.name}  created"
 puts "material #{beer.name} created"
 puts "material #{milk.name} created"
-puts "material #{wood.name} created"
+puts "material #{wine.name} created"
 puts "material #{fruit_juice.name} created"
 puts "material #{rhum.name} created"
 puts "material #{coca_cola.name} created"
@@ -103,7 +108,7 @@ puts "loadingmaterial #{loading_material_3.material.name}: #{loading_material_3.
 
 loading_material_4 = Loadingmaterial.create({ loading_id: load_4.id, material_id: wheat.id, quantity: -10 })
 loading_material_5 = Loadingmaterial.create({ loading_id: load_5.id, material_id: milk.id, quantity: -8 })
-loading_material_6 = Loadingmaterial.create({ loading_id: load_3.id, material_id: wood.id, quantity: -15 })
+loading_material_6 = Loadingmaterial.create({ loading_id: load_3.id, material_id: wine.id, quantity: -15 })
 
 puts "unloadingmaterial #{loading_material_4.material.name}: #{loading_material_4.quantity}  created"
 puts "unloadingmaterial #{loading_material_5.material.name}: #{loading_material_5.quantity}  created"
