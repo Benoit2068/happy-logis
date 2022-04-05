@@ -61,11 +61,11 @@ delivery_geneve = Delivery.new({ name: "Genève", startdate: Date.today, capacit
 delivery_geneve.user = manu
 delivery_geneve.save
 
-delivery_sierre = Delivery.new({ name: "Sierre", startdate: Date.today + 1, capacity: 33, finished: false})
+delivery_sierre = Delivery.new({ name: "Sierre", startdate: Date.today + 2, capacity: 33, finished: false})
 delivery_sierre.user = manu
 delivery_sierre.save
 
-delivery_geneve_2 = Delivery.new({ name: "Genève", startdate: Date.today + 2, capacity: 33, finished: false})
+delivery_geneve_2 = Delivery.new({ name: "Genève", startdate: Date.today + 3, capacity: 33, finished: false})
 delivery_geneve_2.user = manu
 delivery_geneve_2.save
 
@@ -89,7 +89,7 @@ load_4 = Loading.create({date: Date.today + 1, name: "Centrale Coop Schafisheim"
 load_5 = Loading.create({date: Date.today + 1, name: "Centrale Coop Aclens", address: "Route de la Plaine, 1123 Aclens", done: false, delivery_id: delivery_zurich.id})
 load_6 = Loading.create({date: Date.today, name: "Boissons Liechti SA", address: "chemin de la Milice 20, 1228 Plan-les-Ouates", done: true, delivery_id: delivery_geneve.id})
 load_7 = Loading.create({date: Date.today, name: "Prodegua Satigny", address: "rue De-Turrettin 2, 1242 Satigny", done: false, delivery_id: delivery_geneve.id})
-load_8 = Loading.create({date: Date.today, name: "Le Wagon Lausanne", address: "Rue de Lausanne 64, 1020 Renens", done: false, delivery_id: delivery_geneve.id})
+# load_8 = Loading.create({date: Date.today, name: "Le Wagon Lausanne", address: "Rue de Lausanne 64, 1020 Renens", done: false, delivery_id: delivery_geneve.id})
 
 puts "load #{load_1.address} create"
 puts "load #{load_2.address} create"
@@ -109,10 +109,10 @@ loading_material_8 = Loadingmaterial.create({ loading_id: load_6.id, material_id
 loading_material_9 = Loadingmaterial.create({ loading_id: load_6.id, material_id: coca_cola.id, quantity: 7 })
 loading_material_10 = Loadingmaterial.create({ loading_id: load_7.id, material_id: beer.id, quantity: -2 })
 loading_material_11 = Loadingmaterial.create({ loading_id: load_7.id, material_id: chips.id, quantity: 5 })
-loading_material_12 = Loadingmaterial.create({ loading_id: load_8.id, material_id: beer.id, quantity: -8 })
-loading_material_13 = Loadingmaterial.create({ loading_id: load_8.id, material_id: fruit_juice.id, quantity: -5 })
-loading_material_14 = Loadingmaterial.create({ loading_id: load_8.id, material_id: coca_cola.id, quantity: -7 })
-loading_material_15 = Loadingmaterial.create({ loading_id: load_8.id, material_id: chips.id, quantity: -5 })
+# loading_material_12 = Loadingmaterial.create({ loading_id: load_8.id, material_id: beer.id, quantity: -8 })
+# loading_material_13 = Loadingmaterial.create({ loading_id: load_8.id, material_id: fruit_juice.id, quantity: -5 })
+# loading_material_14 = Loadingmaterial.create({ loading_id: load_8.id, material_id: coca_cola.id, quantity: -7 })
+# loading_material_15 = Loadingmaterial.create({ loading_id: load_8.id, material_id: chips.id, quantity: -5 })
 
 
 
@@ -127,9 +127,9 @@ puts "unloadingmaterial #{loading_material_8.material.name}: #{loading_material_
 puts "unloadingmaterial #{loading_material_9.material.name}: #{loading_material_9.quantity}  created"
 puts "unloadingmaterial #{loading_material_10.material.name}: #{loading_material_10.quantity}  created"
 puts "unloadingmaterial #{loading_material_11.material.name}: #{loading_material_11.quantity}  created"
-puts "unloadingmaterial #{loading_material_12.material.name}: #{loading_material_12.quantity}  created"
-puts "unloadingmaterial #{loading_material_13.material.name}: #{loading_material_13.quantity}  created"
-puts "unloadingmaterial #{loading_material_14.material.name}: #{loading_material_14.quantity}  created"
-puts "unloadingmaterial #{loading_material_15.material.name}: #{loading_material_15.quantity}  created"
+# puts "unloadingmaterial #{loading_material_12.material.name}: #{loading_material_12.quantity}  created"
+# puts "unloadingmaterial #{loading_material_13.material.name}: #{loading_material_13.quantity}  created"
+# puts "unloadingmaterial #{loading_material_14.material.name}: #{loading_material_14.quantity}  created"
+# puts "unloadingmaterial #{loading_material_15.material.name}: #{loading_material_15.quantity}  created"
 
 puts "seed created"
