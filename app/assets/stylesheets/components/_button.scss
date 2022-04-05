@@ -18,7 +18,11 @@
   margin: 100px;
 }
 
-.custom-control {
-text-align: center;
+.loading-check {
+display: flex;
+justify-content: center;
 margin-top: 8px;
+  label {
+    margin-left: 5px;
+  }
 }

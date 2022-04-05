@@ -30,14 +30,14 @@
             </p>
           <%end %>
         <% end %>
-            <div class="custom-control custom-switch" >
-              <%= check_box_tag 'customSwitch1', @loading.id, @loading.done, class:"custom-control-input",
+            <div class="loading-check form-check form-switch" >
+              <%= check_box_tag 'flexSwitchCheckChecked', @loading.id, @loading.done, class:"form-check-input",
                   data: {
                     remote: true,
                     url: url_for(action: :toggle, id: @loading.id),
                     method: "POST"
                   } %>
-              <label class="custom-control-label" for="customSwitch1">Complete</label>
+              <label class="form-check-label" for="flexSwitchCheckChecked">Complete</label>
             </div>
           <div>
         </div>
