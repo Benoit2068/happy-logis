@@ -6,8 +6,9 @@
 </div>
 
 <div class="container py-4">
-  <div class="card-delivery">
-    <div class="card-delivery-infos">
+  <div class="cards">
+    <div class="card-delivery">
+      <div class="card-delivery-infos">
         <p>
         <%= icon('fa-solid', 'location-dot') %> <%= @loading.address %>
         <% if current_user.function == "driver" %>
@@ -25,50 +26,55 @@
           <%else %>
             <p>
               <%= icon('fa-solid', 'circle-arrow-down') %>
-              <strong><%=  - loadingmaterial.quantity %></strong> pallets of <strong><%= loadingmaterial.material.name %></strong></p>
+              <strong><%=  - loadingmaterial.quantity %></strong> pallets of <strong><%= loadingmaterial.material.name %></strong>
+            </p>
           <%end %>
         <% end %>
-        <div class="custom-control custom-switch" >
-          <%= check_box_tag 'customSwitch1', @loading.id, @loading.done, class:"custom-control-input",
-              data: {
-                remote: true,
-                url: url_for(action: :toggle, id: @loading.id),
-                method: "POST"
-              } %>
-          <label class="custom-control-label" for="customSwitch1">Complete</label>
+            <div class="custom-control custom-switch" >
+              <%= check_box_tag 'customSwitch1', @loading.id, @loading.done, class:"custom-control-input",
+                  data: {
+                    remote: true,
+                    url: url_for(action: :toggle, id: @loading.id),
+                    method: "POST"
+                  } %>
+              <label class="custom-control-label" for="customSwitch1">Complete</label>
+            </div>
+          <div>
         </div>
-      <div>
+      </div>
+    </div>
+          <% if current_user.function == "manager" %>
+    <div class="cards"style="margin: 20px 0">
+      <div class="card-delivery">
+        <div class="card-delivery-infos">
+            <p>Material in the Truck</p>
+            <% list = [] %>
+            <% Loadingmaterial.where("loading_id <= #{@loading.id}").and(Loadingmaterial.where(loading: Loading.where(delivery_id: @loading.delivery))).each do |lm| %>
+              <% material = lm.material.name.to_sym %>
+              <% list << {"#{material}" => lm.quantity} %>
+            <% end %>
+            <% sum = Hash.new(0) %>
+            <% list.each_with_object(sum) do |hash, sum|%>
+              <% hash.each { |key, value| sum[key] += value }%>
+            <% end %>
+            <% sum.each do |material, value|%>
+              <p><strong><%= value %></strong> palettes of <strong><%= material %></strong></p>
+            <% end %>
+            <p> <strong>Give the driver the materials to load/unload</strong>
+            <%= simple_form_for([ @loading, @loadingmaterial ]) do |f| %>
+              <%= f.input :material_id, as: :select, collection:  Material.all, prompt: "Select Material" %>
+              <%= f.input :quantity, placeholder: 'Enter the number of pallet' %>
+              <%= f.submit "Add this instruction to the Loading", class: "btn btn-gradient", style: "margin-top: 16px" %>
+            <% end %>
+      </div>
     </div>
   </div>
+          <% end %>
 </div>
-<div class="cards"style="margin: 20px 0">
-  <div class="card-delivery">
-    <div class="card-delivery-infos">
-      <% if current_user.function == "manager" %>
-        <%= list = [] %>
-        <% Loadingmaterial.where("loading_id < #{@loading.id}").and(Loadingmaterial.where(loading: Loading.where(delivery_id: @loading.delivery))).each do |lm| %>
-        <% material = lm.material.name.parameterize.underscore.to_sym %>
-        <% list << {"#{material}" => lm.quantity} %>
-        <% end %>
-        <% raise %>
-        <p> <strong>Give the driver the materials to load/unload</strong>
-        <%= simple_form_for([ @loading, @loadingmaterial ]) do |f| %>
-          <%= f.input :material_id, as: :select, collection:  Material.all, prompt: "Select Material" %>
-          <%= f.input :quantity, placeholder: 'Enter the number of pallet' %>
-          <%= f.submit "Add this instruction to the Loading", class: "btn btn-gradient" %>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
-</div>
-
-
-
 
 
 <div id="map"
     style="width:100%"
     data-markers="<%= @markers.to_json %>"
     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-
-  </div>
+</div>
