@@ -12,7 +12,7 @@
   <h1><%= @delivery.name %></h1>
 </div>
 
-<ul id="progress">
+<ol id="progress">
   <% Loading.where(delivery_id: @delivery).order('id asc').each_with_index do |loading, index| %>
     <% if index == 0 %>
       <% if loading.done? %>
@@ -21,7 +21,7 @@
             <div class="node blue"></div>
             <div class="progress-info">
             <div class="divider blue"></div>
-            <h3><%= loading.name %></h3>
+            <h3><%= index + 1 %> - <%= loading.name %></h3>
               <div class="quantity-info">
                 <p><%= loading.address.split(', ').last %></p>
                 <%= render partial: "load-progress", locals: {loading: loading} %>
@@ -33,7 +33,7 @@
             <div class="node blue"></div>
             <div class="progress-info">
               <div class="divider grey"></div>
-              <h3><%= loading.name %></h3>
+              <h3><%= index + 1 %> - <%= loading.name %></h3>
               <div class="quantity-info">
                 <p><%= loading.address.split(', ').last %></p>
                 <%= render partial: "load-progress", locals: {loading: loading} %>
@@ -46,7 +46,7 @@
           <div class="node grey"></div>
           <div class="progress-info">
             <div class="divider grey"></div>
-            <h3><%= loading.name %></h3>
+            <h3><%= index + 1 %> - <%= loading.name %></h3>
             <div class="quantity-info">
               <p><%= loading.address.split(', ').last %></p>
               <%= render partial: "load-progress", locals: {loading: loading} %>
@@ -62,7 +62,7 @@
           <div class="node blue"></div>
           <div class="progress-info">
             <div class="divider blue"></div>
-            <h3><%= loading.name %></h3>
+            <h3><%= index + 1 %> - <%= loading.name %></h3>
             <div class="quantity-info">
               <p><%= loading.address.split(', ').last %></p>
               <%= render partial: "load-progress", locals: {loading: loading} %>
@@ -74,7 +74,7 @@
           <li><div class="node blue"></div>
             <div class="progress-info">
               <div class="divider grey"></div>
-              <h3><%= loading.name %></h3>
+              <h3><%= index + 1 %> - <%= loading.name %></h3>
               <div class="quantity-info">
                 <p><%= loading.address.split(', ').last %></p>
                 <%= render partial: "load-progress", locals: {loading: loading} %>
@@ -87,7 +87,7 @@
         <li><div class="node grey"></div>
           <div class="progress-info">
             <div class="divider grey"></div>
-            <h3><%= loading.name %></h3>
+            <h3><%= index + 1 %> - <%= loading.name %></h3>
             <div class="quantity-info">
               <p><%= loading.address.split(', ').last %></p>
               <%= render partial: "load-progress", locals: {loading: loading} %>
@@ -100,7 +100,7 @@
         <li><div class="divider blue"></div></li>
         <li><div class="node blue"></div>
           <div class="progress-info" style="margin-top:40px">
-            <h3><%= loading.name %></h3>
+            <h3><%= index + 1 %> - <%= loading.name %></h3>
             <div class="quantity-info">
               <p><%= loading.address.split(', ').last %></p>
               <%= render partial: "load-progress", locals: {loading: loading} %>
@@ -111,7 +111,7 @@
         <li><div class="divider grey"></div></li>
         <li><div class="node grey"></div>
           <div class="progress-info" style="margin-top:40px">
-          <h3><%= loading.name %></h3>
+          <h3><%= index + 1 %> - <%= loading.name %></h3>
             <div class="quantity-info">
               <p><%= loading.address.split(', ').last %></p>
               <%= render partial: "load-progress", locals: {loading: loading} %>
@@ -124,7 +124,7 @@
   <% if current_user.function == "manager" %>
     <%= link_to "Add a Loading", new_delivery_loading_path(@delivery), class: "btn btn-gradient" %>
   <% end %>
-</ul>
+</ol>
 
   <% if Loading.where(delivery_id: @delivery).presence %>
     <div id="map"
