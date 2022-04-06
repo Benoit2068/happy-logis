@@ -10,7 +10,7 @@ class LoadingmaterialsController < ApplicationController
     @loadingmaterial = Loadingmaterial.new(loadingmaterial_params)
     @loadingmaterial.loading = @loading
     if @loadingmaterial.save
-      redirect_to delivery_path(@loading.delivery_id)
+      redirect_to delivery_loading_path(@loading.delivery_id, @loading)
     else
       render 'loadings/show'
     end
