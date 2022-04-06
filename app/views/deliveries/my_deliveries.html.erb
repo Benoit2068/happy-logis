@@ -7,7 +7,14 @@
         <% @deliveries.each do |delivery| %>
             <div class="card-delivery">
               <div class="card-delivery-infos">
-                <h2><%= delivery.name %></h2>
+                <h2>
+                  <% if delivery.finished? %>
+                    <%= icon('fa-solid', 'circle-check') %>
+                  <% else %>
+                    <%= icon('fa-solid', 'circle-xmark') %>
+                  <% end %>
+                  <%= delivery.name %>
+                </h2>
                 <p><%= delivery.startdate.strftime("%d/%m/%Y") %></p>
               </div>
                 <%= link_to "Start delivery", delivery_path(delivery), class: "btn btn-gradient" %>

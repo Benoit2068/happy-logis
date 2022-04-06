@@ -7,7 +7,7 @@ class DeliveriesController < ApplicationController
   end
 
   def my_deliveries
-    @deliveries = Delivery.where(user_id: current_user, finished: false).order(:startdate)
+    @deliveries = Delivery.where(user_id: current_user).order(:startdate)
   end
 
   def show
