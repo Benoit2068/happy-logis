@@ -13,13 +13,13 @@ User.destroy_all
 Loadingmaterial.destroy_all
 
 john = User.create({ email: "john@gmail.com", name: 'John', function: "driver", password: "123456" })
-mick = User.create({ email: "mick@gmail.com", name: 'Mick', function: "driver", password: "123456" })
+paul = User.create({ email: "paul@gmail.com", name: 'Paul', function: "driver", password: "123456" })
 nico = User.create({ email: "nico@gmail.com", name: 'Nico', function: "manager", password: "123456" })
 manu = User.create({ email: "manu@gmail.com", name: 'Manu', function: "driver", password: "123456" })
 
 
 puts "user #{john.name} create as #{john.function}"
-puts "user #{mick.name} create as #{mick.function}"
+puts "user #{paul.name} create as #{paul.function}"
 puts "user #{nico.name} create as #{nico.function}"
 puts "user #{manu.name} create as #{manu.function}"
 
@@ -48,12 +48,27 @@ puts "material #{coca_cola.name} created"
 puts "material #{chips.name} created"
 puts "material #{flour.name} created"
 
-delivery_zurich = Delivery.new({ name: "Zurich", startdate: Date.today - 1 , capacity: 33, finished: false})
+
+delivery_zurich_2 = Delivery.new({ name: "Zurich", startdate: Date.today - 1 , capacity: 33, finished: true})
+delivery_zurich_2.user = paul
+delivery_zurich_2.save
+
+delivery_berne = Delivery.new({ name: "Berne", startdate: Date.today - 1 , capacity: 33, finished: true})
+delivery_berne.user = john
+delivery_berne.save
+
+
+
+
+delivery_lausanne_2 = Delivery.new({ name: "Lausanne", startdate: Date.today, capacity: 33, finished: false})
+delivery_lausanne_2.user = john
+delivery_lausanne_2.save
+
+
+delivery_zurich = Delivery.new({ name: "Zurich", startdate: Date.today - 1 , capacity: 33, finished: true})
 delivery_zurich.user = manu
 delivery_zurich.save
 
-delivery_lausanne = Delivery.new({ name: "Lausanne", startdate: Date.today + 1, capacity: 33, finished: true})
-delivery_lausanne.user = john
 
 
 delivery_geneve = Delivery.new({ name: "Genève", startdate: Date.today, capacity: 33, finished: false})
@@ -74,12 +89,12 @@ delivery_sierre_2.save
 
 
 puts "delivery #{delivery_zurich.name} create"
-puts "delivery #{delivery_lausanne.name} create"
+puts "delivery #{delivery_lausanne_2.name} create"
 puts "delivery #{delivery_geneve.name} create"
 puts "delivery #{delivery_sierre.name} create"
 puts "delivery #{delivery_sierre_2.name} create"
 puts "delivery #{delivery_geneve_2.name} create"
-
+puts "delivery #{delivery_zurich_2.name} create"
 
 load_1 = Loading.create({date: Date.today - 1, name: "Moulin de la Pallanterie SA", address: "Rte de Thonon 154, 1222 Vésenaz", done: true, delivery_id: delivery_zurich.id})
 load_2 = Loading.create({date: Date.today - 1, name: "Stettler Comestibles SA", address: "Rte de Carrouge 12, 1509 Vucherens", done: true, delivery_id: delivery_zurich.id})
