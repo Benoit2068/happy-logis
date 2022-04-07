@@ -57,9 +57,6 @@ delivery_berne = Delivery.new({ name: "Berne", startdate: Date.today - 1 , capac
 delivery_berne.user = john
 delivery_berne.save
 
-
-
-
 delivery_lausanne_2 = Delivery.new({ name: "Lausanne", startdate: Date.today, capacity: 33, finished: false})
 delivery_lausanne_2.user = john
 delivery_lausanne_2.save
@@ -68,8 +65,6 @@ delivery_lausanne_2.save
 delivery_zurich = Delivery.new({ name: "Zurich", startdate: Date.today - 1 , capacity: 33, finished: true})
 delivery_zurich.user = manu
 delivery_zurich.save
-
-
 
 delivery_geneve = Delivery.new({ name: "Genève", startdate: Date.today, capacity: 33, finished: false})
 delivery_geneve.user = manu

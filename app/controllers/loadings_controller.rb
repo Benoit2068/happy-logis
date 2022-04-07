@@ -24,7 +24,6 @@ class LoadingsController < ApplicationController
     @loading = Loading.new(loading_params)
     @delivery = Delivery.find(params[:delivery_id])
     @loading.delivery_id = @delivery.id
-    @loading.save
     redirect_to delivery_path(@loading.delivery_id)
   end
 
