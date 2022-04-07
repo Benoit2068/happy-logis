@@ -7,8 +7,8 @@
 
 <div class="container py-4">
   <div class="cards">
-    <div class="card-delivery">
-      <div class="card-delivery-infos">
+    <div class="card-delivery" style="margin-bottom: 20px">
+      <div class="card-delivery-infos" style= "padding: 8px" >
         <p>
         <%= icon('fa-solid', 'location-dot') %> <%= @loading.address %>
         <% if current_user.function == "driver" %>
