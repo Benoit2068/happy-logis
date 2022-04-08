@@ -45,8 +45,8 @@
     </div>
           <% if current_user.function == "manager" %>
     <div class="cards">
-      <div class="card-delivery">
-        <div class="card-delivery-infos">
+      <div class="card-delivery" style="margin-bottom: 8px">
+        <div class="card-delivery-infos" >
             <p>Material in the Truck</p>
             <% list = [] %>
             <% Loadingmaterial.where("loading_id <= #{@loading.id}").and(Loadingmaterial.where(loading: Loading.where(delivery_id: @loading.delivery))).each do |lm| %>
