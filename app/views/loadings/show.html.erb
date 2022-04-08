@@ -7,7 +7,7 @@
 
 <div class="container py-4">
   <div class="cards">
-    <div class="card-delivery" style="margin-bottom: 20px">
+    <div class="card-delivery" style="margin-bottom: 8px">
       <div class="card-delivery-infos" style= "padding: 8px" >
         <p>
         <%= icon('fa-solid', 'location-dot') %> <%= @loading.address %>
@@ -44,7 +44,7 @@
       </div>
     </div>
           <% if current_user.function == "manager" %>
-    <div class="cards"style="margin: 20px 0">
+    <div class="cards">
       <div class="card-delivery">
         <div class="card-delivery-infos">
             <p>Material in the Truck</p>
